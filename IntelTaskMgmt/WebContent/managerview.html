@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Effective Task Managment</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script type="text/ecmascript" src="jqgrid/js/jquery.jqGrid.js"></script>
+<script type="text/ecmascript" src="jqgrid/js/grid.locale-en.js"></script>
+   
+<link rel="stylesheet" type="text/css" media="screen" href="jqgrid/css/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="jqgrid/css/ui.jqgrid.css" />	
+	
+</head>
+<body>
+
+
+	<div id="exTab3" class="container">
+	<h3>Project Name</h3>
+		<ul class="nav nav-pills">
+		
+			<li class="active"><a href="#1b" data-toggle="tab">Task</a>
+			</li>
+			<li><a href="#2b" data-toggle="tab">Resources</a></li>
+			<li><a href="#3b" data-toggle="tab">Dashboard</a></li>
+		</ul>
+
+		<div class="tab-content clearfix">
+			<div class="tab-pane active" id="1b">
+				<br />
+
+				<!-- add task -->	
+				<div class="container">
+					<!-- Trigger the modal with a button -->
+					<button type="button" class="btn btn-info btn-md"
+						data-toggle="modal" data-target="#myModal">Add Task</button>
+
+					<!-- Modal -->
+					<div class="modal fade" id="myModal" role="dialog">
+						<div class="modal-dialog">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">ADD NEW TASK</h4>
+								</div>
+								<div class="modal-body">
+
+
+
+									<div class="container">
+										<form class="form-horizontal" role="form">
+											<div class="form-group">
+												<label class="control-label col-sm-2" for="email">Title:</label>
+												<div class="col-sm-4">
+													<input type="text" class="form-control" id="email"
+														placeholder="Enter email">
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-sm-2" for="pwd">Status:</label>
+												<div class="col-sm-4">
+													<input type="text" class="form-control" id="pwd"
+														placeholder="Enter password">
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="col-sm-offset-2 col-sm-10">
+													<div class="checkbox">
+														<label><input type="checkbox"> Remember me</label>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="col-sm-offset-2 col-sm-10">
+													<button type="submit" class="btn btn-default">Submit</button>
+												</div>
+											</div>
+										</form>
+									</div>
+
+
+
+
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">Close</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!--\ Modal -->
+				</div>
+				<!-- \add task -->
+				<br/>
+
+
+				<table id="Task"></table>
+				<div id="pager"></div>
+				<br /> 
+				<table id="Task_d"></table>
+				<div id="pager_d"></div>
+
+			</div>
+			<div class="tab-pane" id="2b">
+				<h3>resourcestab</h3>
+			</div>
+			<div class="tab-pane" id="3b">
+				<h3>tastresourcestab</h3>
+			</div>
+
+		</div>
+	</div>
+
+<script type="text/javascript">
+
+jQuery("#Task").jqGrid({
+   	url:'servercall?type=tasklist',
+	datatype: "json",
+   	colNames:['Task Id','Title','Status','Start Date','End Date','Actual End Date','Skills','Complexity Level', 'Description'],
+   	colModel:[
+   		{name:'id',index:'id', width:55},
+   		{name:'title',index:'title', width:150},
+   		{name:'status',index:'status', width:80},
+   		{name:'sdate',index:'sdate', width:80},
+   		{name:'edate',index:'edate', width:80},
+   		{name:'aedate',index:'aedate', width:100},		
+   		{name:'skills',index:'skills', width:150},
+   		{name:'clevel',index:'clevel', width:120},
+   		{name:'desc',index:'desc', width:200}		
+   	],
+   	rowNum:10,
+   	rowList:[10,20,30],
+   	pager: '#pager',
+   	sortname: 'id',
+    viewrecords: true,
+    sortorder: "desc",
+	multiselect: false,
+	caption: "Backlog",
+	editurl:"someurl.jsp",
+	height:210,
+	onSelectRow: function(ids) {
+		if(ids == null) {
+			ids=0;
+			if(jQuery("#Task_d").jqGrid('getGridParam','records') >0 )
+			{
+				jQuery("#Task_d").jqGrid('setGridParam',{url:"servercall?type=subgrid&q=1&id="+ids,page:1});
+				jQuery("#Task_d").jqGrid('setCaption',"Assignment Detail: "+ids)
+				.trigger('reloadGrid');
+			}
+		} else {
+			jQuery("#Task_d").jqGrid('setGridParam',{url:"servercall?type=subgrid&q=1&id="+ids,page:1});
+			jQuery("#Task_d").jqGrid('setCaption',"Assignment Detail: "+ids)
+			.trigger('reloadGrid');			
+		}
+	}
+});
+
+jQuery("#Task").jqGrid('navGrid','#pager',
+		{}, //options
+		{height:280,reloadAfterSubmit:false}, // edit options
+		{height:280,reloadAfterSubmit:false}, // add options
+		{reloadAfterSubmit:false}, // del options
+		{} // search options
+		);
+ 
+
+jQuery("#Task_d").jqGrid({
+	height: 100,
+   	url:'servercall?type=subgrid&q=1&id=0',
+	datatype: "json",
+   	colNames:['Name','Ratings','Status','Assigned', 'Start date','End date','Actual end date'],
+   	colModel:[
+   		{name:'name',index:'name', width:150},
+   		{name:'rating',index:'ratings', width:150},
+   		{name:'status',index:'status', width:60},
+   		{name:'hassigned',index:'hassigned', width:60},
+   		{name:'sdate',index:'sdate', width:80},
+   		{name:'edate',index:'edate', width:80},
+   		{name:'aedate',index:'aedate', width:100},
+   	],
+   	rowNum:5,
+   	rowList:[5,10,20],
+   	pager: '#pager_d',
+   	sortname: 'item',
+    viewrecords: true,
+    sortorder: "asc",
+	multiselect: true,
+	caption:"Resource allocation detail"
+}).navGrid('#pager_d',{add:false,edit:false,del:false});
+jQuery("#ms1").click( function() {
+	var s;
+	s = jQuery("#Task_d").jqGrid('getGridParam','selarrrow');
+	alert(s);
+});
+</script>
+</body>
+</html>
