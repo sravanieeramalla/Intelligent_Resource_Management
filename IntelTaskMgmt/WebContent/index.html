@@ -13,6 +13,12 @@
 
 <script type="text/ecmascript" src="jqgrid/js/jquery.jqGrid.js"></script>
 <script type="text/ecmascript" src="jqgrid/js/grid.locale-en.js"></script>
+ <script type="text/javascript">
+ $(".modal-wide").on("show.bs.modal", function() {
+	  var height = $(window).height() - 200;
+	  $(this).find(".modal-body").css("max-height", height);
+	});
+ </script>  
    
 <link rel="stylesheet" type="text/css" media="screen" href="jqgrid/css/jquery-ui.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="jqgrid/css/ui.jqgrid.css" />	
@@ -42,8 +48,8 @@
 						data-toggle="modal" data-target="#myModal">Add Task</button>
 
 					<!-- Modal -->
-					<div class="modal fade" id="myModal" role="dialog">
-						<div class="modal-dialog">
+					<div class="modal fade modal-wide" id="myModal" role="dialog">
+						<div class="modal-dialog ">
 
 							<!-- Modal content-->
 							<div class="modal-content">
@@ -54,84 +60,134 @@
 								<div class="modal-body">
 
 
+									<div class="col-md-6">
+										<div class="panel panel-primary">
+											<!-- <div class="panel-heading">Form</div> -->
+											<div class="panel-body">
+
+												<!-- Left div -->
+												<div class="container">
+													<form class="form-horizontal" role="form">
+														<div class="form-group">
+															<label class="control-label col-sm-2" for="email">Title:</label>
+															<div class="col-sm-3">
+																<input type="text" class="form-control" id="title"
+																	placeholder="Enter title">
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-sm-2" for="pwd">Status:</label>
+															<div class="col-sm-3">
+																<input type="text" class="form-control" id="status"
+																	placeholder="Enter status">
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-sm-2" for="pwd">Start
+																Date:</label>
+															<div class="col-sm-3">
+																<input type="text" class="form-control" id="startdate"
+																	placeholder="Enter start date">
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-sm-2" for="pwd">End
+																Date:</label>
+															<div class="col-sm-3">
+																<input type="text" class="form-control" id="enddate"
+																	placeholder="Enter end date">
+															</div>
+														</div>
+
+														<div class="form-group">
+															<label class="control-label col-sm-2" for="pwd">Actual
+																End Date:</label>
+															<div class="col-sm-3">
+																<input type="text" class="form-control"
+																	id="actualenddate" placeholder="Enter actual end date">
+															</div>
+														</div>
+
+														<div class="form-group">
+															<label class="control-label col-sm-2" for="pwd">Skills:</label>
+															<div class="col-sm-3" id='TextBoxesGroup'>
+																<div id="TextBoxDiv1">
+
+																	<!-- <input type="text" class="form-control" id="textbox1" placeholder="Enter skills"> -->
+																</div>
+
+																<div>
+																	<input type='button' class="btn btn-primary btn-sm"
+																		value='Add Skill' id='addButton'> <input
+																		type='button' class="btn btn-default btn-sm"
+																		value='Remove Skill' id='removeButton'>
+																	<!-- <input type='button' class="btn btn-default btn-sm" value='Get Skill' id='getButtonValue'> -->
+																</div>
 
 
+															</div>
+														</div>
 
- 
-
-
-									<div class="container">
-										<form class="form-horizontal" role="form">
-											<div class="form-group">
-												<label class="control-label col-sm-2" for="email">Title:</label>
-												<div class="col-sm-4">
-													<input type="text" class="form-control" id="title"
-														placeholder="Enter title">
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-sm-2" for="pwd">Status:</label>
-												<div class="col-sm-4">
-													<input type="text" class="form-control" id="status"
-														placeholder="Enter status">
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-sm-2" for="pwd">Start Date:</label>
-												<div class="col-sm-4">
-													<input type="text" class="form-control" id="startdate"
-														placeholder="Enter start date">
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-sm-2" for="pwd">End Date:</label>
-												<div class="col-sm-4">
-													<input type="text" class="form-control" id="enddate"
-														placeholder="Enter end date">
-												</div>
-											</div>
-											
-											<div class="form-group">
-												<label class="control-label col-sm-2" for="pwd">Actual End Date:</label>
-												<div class="col-sm-4">
-													<input type="text" class="form-control" id="actualenddate"
-														placeholder="Enter actual end date">
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-sm-2" for="pwd">Skills:</label>
-												<div class="col-sm-4">
-													<input type="text" class="form-control" id="skills"
-														placeholder="Enter skills">
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-sm-2" for="pwd">Complexity Level:</label>
-												<div class="col-sm-4">
-													<input type="text" class="form-control" id="complexitylevel"
-														placeholder="Enter complexity level">
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-sm-2" for="pwd">Description:</label>
-												<div class="col-sm-4">
-													<input type="text" class="form-control" id="description"
-														placeholder="Enter description">
-												</div>
-											</div>
-											<!-- <div class="form-group">
+														<div class="form-group">
+															<label class="control-label col-sm-2" for="pwd">Complexity
+																Level:</label>
+															<div class="col-sm-3">
+																<input type="text" class="form-control"
+																	id="complexitylevel"
+																	placeholder="Enter complexity level">
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-sm-2" for="pwd">Allocate
+																Resources:</label>
+															<div class="col-sm-3">
+																<input type='button' class="btn btn-primary btn-sm"
+																	value='Get Resource' id='getRButton'>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-sm-2" for="description">Description:</label>
+															<div class="col-sm-3">
+																<input type="text" class="form-control" id="description"
+																	placeholder="Enter description">
+															</div>
+														</div>
+														<!-- <div class="form-group">
 												<div class="col-sm-offset-2 col-sm-10">
 													<div class="checkbox">
 														<label><input type="checkbox"> Allocate resources</label>
 													</div>
 												</div>
 											</div> -->
-											<div class="form-group">
-												<div class="col-sm-offset-2 col-sm-10">
-													<button type="submit" class="btn btn-default">Submit</button>
+														<div class="form-group">
+															<div class="col-sm-offset-2 col-sm-10">
+																<button type="submit" class="btn btn-primary">Submit</button>
+															</div>
+														</div>
+													</form>
 												</div>
+												<!-- /	Left div -->
 											</div>
-										</form>
+										</div>
+									</div>
+
+
+									<div class="col-md-6">
+										<div class="panel panel-primary">
+											<div class="panel-heading">Resouce Suggestion</div> -->
+											<div class="panel-body">
+												<!-- 	Right div -->
+												<ul>
+												<li>1 Deepak</li>
+												<li>2 Deepak</li>
+												<li>3 Deepak</li>
+												<li>4 Deepak</li>
+												
+												</ul>
+
+												<!-- /	Right div -->
+											</div>
+										</div>
 									</div>
 
 
@@ -144,9 +200,9 @@
 								</div>
 							</div>
 
-						</div>
-					</div>
-					<!--\ Modal -->
+									</div>
+								</div>
+								<!--\ Modal -->
 				</div>
 				<!-- \add task -->
 				<br/>
@@ -170,6 +226,51 @@
 	</div>
 
 <script type="text/javascript">
+
+$(document).ready(function(){
+
+    var counter = 1;
+	
+    $("#addButton").click(function () {
+			
+		if(counter>10){
+	        alert("Only 10 textboxes allow");
+	        return false;
+	    }   
+		
+		var newTextBoxDiv = $(document.createElement('div')).attr("id", 'TextBoxDiv' + counter);
+            newTextBoxDiv.after().html('<label>Skill #'+ counter + ' : </label>' +
+			'<input type="text" name="textbox' + counter + 
+			'" id="textbox' + counter + '" value="" class="form-control" placeholder="Enter skills">'+
+			'<input type="text" name="textboxhour' + counter +
+			'" id="textboxhour' + counter + '" value="" class="form-control" placeholder="Enter Hour">');
+        
+		newTextBoxDiv.appendTo("#TextBoxesGroup");
+			
+	    counter++;
+    });
+
+    $("#removeButton").click(function () {
+	    if(counter==1){
+	        alert("No more textbox to remove");
+	        return false;
+	    }   
+        counter--;
+		
+        $("#TextBoxDiv" + counter).remove();
+	});
+	
+	$("#getButtonValue").click(function () {
+	
+		var msg = '';
+		for(i=1; i<counter; i++){
+			msg += "\n Skill #" + i + " : " + $('#textbox' + i).val()+ "\n Hour #" + i + " : " + $('#textboxhour' + i).val();
+		}
+	   	alert(msg);
+	});
+	
+});
+
 
 jQuery("#Task").jqGrid({
    	url:'servercall?type=tasklist',
