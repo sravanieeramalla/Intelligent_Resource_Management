@@ -7,6 +7,7 @@
 
 
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="jqgrid/css/jquery-ui.css" />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -18,11 +19,14 @@
 	  var height = $(window).height() - 200;
 	  $(this).find(".modal-body").css("max-height", height);
 	});
- </script>  
+ 
+ </script>
+  
    
-<link rel="stylesheet" type="text/css" media="screen" href="jqgrid/css/jquery-ui.css" />
+
 <link rel="stylesheet" type="text/css" media="screen" href="jqgrid/css/ui.jqgrid.css" />	
 	
+ 
 </head>
 <body>
 
@@ -107,10 +111,107 @@
 														<div class="form-group col-md-12 col-sm-12  col-xs-12" id='TextBoxesGroup'>
 															<!-- List of skills -->
 														</div>
-
+														<div class="row">
 														<div class="form-group col-md-12 col-sm-12  col-xs-12">
 															<label class="control-label" for="getRButton">Allocate Resources:</label>
 															<input type='button' class="btn btn-primary btn-sm" value='Get Resource' id='getRButton'>
+														</div>
+														</div>
+
+														<div class="form-group col-md-11 col-sm-11  col-xs-11">
+														
+																<div class="panel panel-default"> 
+																<div class="panel-body">
+
+
+														<div class="row">
+															<div class="col-md-4 col-sm-4 col-xs-4"></div>
+															<div class="form-group col-md-7 col-sm-7 col-xs-7">
+																<label for="from">From</label>
+																<input type="text" id="from" name="from">
+																<label for="to">to</label>
+																<input type="text" id="to" name="to">
+															</div>
+															
+														</div>
+														<HR>
+														
+															<div class="row">
+															<div class="col-md-1 col-sm-1 col-xs-1"></div>
+															<div class="form-group col-md-3 col-sm-3 col-xs-3">
+																<label class="control-label" for="dh">DH:</label>
+																<select class="form-control" id="dh">
+															        <option>Ashish</option>
+															        <option>Prasad</option>
+															        <option>Koushik</option>
+															     </select>
+															</div>
+															<div class="col-md-1 col-sm-1 col-xs-1"></div>
+															<div class="form-group col-md-3 col-sm-3 col-xs-3">
+															<label class="control-label" for="spm">SPM:</label>
+																<select class="form-control" id="spm">
+															        <option>Bhupesh</option>
+															        <option>Vijay</option>
+															        <option>Aanand</option>
+															     </select>
+															</div>
+															<div class="col-md-1 col-sm-1 col-xs-1"></div>
+															<div class="form-group col-md-3 col-sm-4 col-xs-3">
+																<label class="control-label" for="manager">Manager:</label>
+																<select class="form-control" id="manager">
+															        <option>Sundeep</option>
+															        <option>Julie</option>
+															        <option>Bindu</option>
+															     </select>
+															</div>
+														</div>
+														
+															
+															
+															
+															
+																<div class="col-md-12 col-sm-12  col-xs-12">
+																<table class="table table-bordered table-striped">
+																	<thead>
+																		<th style="width: 20px;"></th>
+																		<th>Resource Name</th>
+																	</thead>
+																	<tbody>
+																		<tr>
+																			<td><input type="checkbox"></td>
+																			<td>Sravani</td>
+																		</tr>
+																		<tr>
+																			<td><input type="checkbox"></td>
+																			<td>Deepak</td>
+																		</tr>
+																		<tr>
+																			<td><input type="checkbox"></td>
+																			<td>Madhuri</td>
+																		</tr>
+																		<tr>
+																			<td><input type="checkbox"></td>
+																			<td>Sundeep</td>
+																		</tr>
+																		<tr>
+																			<td><input type="checkbox"></td>
+																			<td>Anil</td>
+																		</tr>
+																		<tr>
+																			<td><input type="checkbox"></td>
+																			<td>Srinivas</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+
+
+
+
+
+													</div>
+													</div>
+
 														</div>
 
 														<div class="form-group col-md-2 col-sm-2  col-xs-2">
@@ -123,11 +224,6 @@
 											</div>
 										</div>
 									</div>
-
-
-
-													
-													
 
 
 
@@ -290,5 +386,14 @@ jQuery("#ms1").click( function() {
 	alert(s);
 });
 </script>
+<script src="jqgrid/js/jquery.tableCheckbox.js"></script> 
+<script>
+$('table').tableCheckbox({ /* options */ });
+</script> 
+<script type="text/javascript">
+ $(function() {
+	    $("#from").datepicker();
+	  });
+ </script> 
 </body>
 </html>
