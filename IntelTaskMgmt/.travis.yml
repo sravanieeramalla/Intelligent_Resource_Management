@@ -1,0 +1,14 @@
+language: java
+deploy:
+   edge: true
+   sudo: false
+   provider: cloudfoundry
+   username: sreenivasa.pusarla@one.verizon.com
+   password: verizon123
+   api: https://api.run.pivotal.io
+   organization: Task_Management
+   space: development
+   app: Task_App
+   on:
+   repo: sravanieeramalla/Intelligent_Resource_Management
+   skip_cleanup: true
