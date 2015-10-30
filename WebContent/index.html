@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Effective Task Managment</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="jqgrid/css/jquery-ui.css" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script type="text/ecmascript" src="jqgrid/js/jquery.jqGrid.js"></script>
+<script type="text/ecmascript" src="jqgrid/js/grid.locale-en.js"></script>
+ <script type="text/javascript">
+ $(".modal-wide").on("show.bs.modal", function() {
+	  var height = $(window).height() - 200;
+	  $(this).find(".modal-body").css("max-height", height);
+	});
+ 
+ </script>
+  
+   
+
+<link rel="stylesheet" type="text/css" media="screen" href="jqgrid/css/ui.jqgrid.css" />	
+	
+ 
+</head>
+<body>
+
+
+	<div id="exTab3" class="container">
+	<h3>Project Name</h3>
+		<ul class="nav nav-pills">
+		
+			<li class="active"><a href="#1b" data-toggle="tab">Task</a>
+			</li>
+			<li><a href="#2b" data-toggle="tab">Resources</a></li>
+			<li><a href="#3b" data-toggle="tab">Dashboard</a></li>
+		</ul>
+
+		<div class="tab-content clearfix">
+			<div class="tab-pane active" id="1b">
+				<br />
+
+				<!-- add task -->	
+				<div class="container">
+					<!-- Trigger the modal with a button -->
+					<button type="button" class="btn btn-info btn-md"
+						data-toggle="modal" data-target="#myModal">Add Task</button>
+
+					<!-- Modal -->
+					<div class="modal fade modal-wide" id="myModal" role="dialog">
+						<div class="modal-dialog ">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">ADD NEW TASK</h4>
+								</div>
+								<div class="modal-body">
+
+
+									<div class="col-md-12 col-sm-12 col-xs-12">
+										<div class="panel panel-primary">
+											<div class="panel-heading">Task Form</div>
+											<div class="panel-body">
+
+												<!-- Left div -->
+												<div class="container">
+													<form class="form-horizontal" role="form">
+													
+														
+														<div class="row">
+															<div class="form-group col-md-4 col-sm-4 col-xs-4">
+																<label class="control-label" for="title">Title:</label>
+																<input type="text" class="form-control" id="title" placeholder="Enter title">
+															</div>
+															<div class="col-md-1 col-sm-1 col-xs-1"></div>
+															<div class="form-group col-md-3 col-sm-3 col-xs-3">
+															<label class="control-label" for="startdate">
+																Start Date:</label>
+																<input type="text" class="form-control" id="startdate" placeholder="Enter start date">
+															</div>
+															<div class="col-md-1 col-sm-1 col-xs-1"></div>
+															<div class="form-group col-md-3 col-sm-4 col-xs-3">
+																<label class="control-label" for="enddate">
+																End	Date:</label>
+																<input type="text" class="form-control" id="enddate" placeholder="Enter end date">
+															</div>
+														</div>
+														<div class="row">
+															<div class="form-group col-md-11 col-sm-11 col-xs-11">
+																<label class="control-label" for="description">Description:</label>
+																<textarea  class="form-control" id="description" placeholder="Enter description"> </textarea>
+															</div>
+															<div class="col-md-1 col-sm-1 col-xs-1"></div>
+														</div>
+														<div class="row">	
+															<div class="form-group col-md-12 col-sm-12  col-xs-12">
+															<label class="control-label" >Skills:</label>
+															<input type='button' class="btn btn-primary btn-sm" value='Add Skill' id='addButton'>
+															<input type='button' class="btn btn-default btn-sm" value='Remove Skill' id='removeButton'>
+															<!-- <input type='button' class="btn btn-default btn-sm" value='Get Skill' id='getButtonValue'> -->
+															</div>
+														</div>
+														
+														<div class="form-group col-md-12 col-sm-12  col-xs-12" id='TextBoxesGroup'>
+															<!-- List of skills -->
+														</div>
+														<div class="row">
+														<div class="form-group col-md-12 col-sm-12  col-xs-12">
+															<label class="control-label" for="getRButton">Allocate Resources:</label>
+															<input type='button' class="btn btn-primary btn-sm" value='Get Resource' id='getRButton'>
+														</div>
+														</div>
+
+														<div class="form-group col-md-11 col-sm-11  col-xs-11">
+														
+																<div class="panel panel-default"> 
+																<div class="panel-body">
+
+
+														<div class="row">
+															<div class="col-md-4 col-sm-4 col-xs-4"></div>
+															<div class="form-group col-md-7 col-sm-7 col-xs-7">
+																<label for="from">From</label>
+																<input type="text" id="from" name="from">
+																<label for="to">to</label>
+																<input type="text" id="to" name="to">
+															</div>
+															
+														</div>
+														<HR>
+														
+															<div class="row">
+															<div class="col-md-1 col-sm-1 col-xs-1"></div>
+															<div class="form-group col-md-3 col-sm-3 col-xs-3">
+																<label class="control-label" for="dh">DH:</label>
+																<select class="form-control" id="dh">
+															        <option>Ashish</option>
+															        <option>Prasad</option>
+															        <option>Koushik</option>
+															     </select>
+															</div>
+															<div class="col-md-1 col-sm-1 col-xs-1"></div>
+															<div class="form-group col-md-3 col-sm-3 col-xs-3">
+															<label class="control-label" for="spm">SPM:</label>
+																<select class="form-control" id="spm">
+															        <option>Bhupesh</option>
+															        <option>Vijay</option>
+															        <option>Aanand</option>
+															     </select>
+															</div>
+															<div class="col-md-1 col-sm-1 col-xs-1"></div>
+															<div class="form-group col-md-3 col-sm-4 col-xs-3">
+																<label class="control-label" for="manager">Manager:</label>
+																<select class="form-control" id="manager">
+															        <option>Sundeep</option>
+															        <option>Julie</option>
+															        <option>Bindu</option>
+															     </select>
+															</div>
+														</div>
+														
+															
+															
+															
+															
+																<div class="col-md-12 col-sm-12  col-xs-12">
+																<table class="table table-bordered table-striped">
+																	<thead>
+																		<th style="width: 20px;"></th>
+																		<th>Resource Name</th>
+																	</thead>
+																	<tbody>
+																		<tr>
+																			<td><input type="checkbox"></td>
+																			<td>Sravani</td>
+																		</tr>
+																		<tr>
+																			<td><input type="checkbox"></td>
+																			<td>Deepak</td>
+																		</tr>
+																		<tr>
+																			<td><input type="checkbox"></td>
+																			<td>Madhuri</td>
+																		</tr>
+																		<tr>
+																			<td><input type="checkbox"></td>
+																			<td>Sundeep</td>
+																		</tr>
+																		<tr>
+																			<td><input type="checkbox"></td>
+																			<td>Anil</td>
+																		</tr>
+																		<tr>
+																			<td><input type="checkbox"></td>
+																			<td>Srinivas</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+
+
+
+
+
+													</div>
+													</div>
+
+														</div>
+
+														<div class="form-group col-md-2 col-sm-2  col-xs-2">
+																<button type="submit" class="btn btn-primary">Submit</button>
+														</div>
+
+													</form>
+												</div>
+												<!-- /	Left div -->
+											</div>
+										</div>
+									</div>
+
+
+
+
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">Close</button>
+								</div>
+							</div>
+
+									</div>
+								</div>
+								<!--\ Modal -->
+				</div>
+				<!-- \add task -->
+				<br/>
+
+
+				<table id="Task"></table>
+				<div id="pager"></div>
+				<br /> 
+				<table id="Task_d"></table>
+				<div id="pager_d"></div>
+
+			</div>
+			<div class="tab-pane" id="2b">
+				<h3>resourcestab</h3>
+			</div>
+			<div class="tab-pane" id="3b">
+				<h3>tastresourcestab</h3>
+			</div>
+
+		</div>
+	</div>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+    var counter = 1;
+	
+    $("#addButton").click(function () {
+			
+		if(counter>10){
+	        alert("Only 10 textboxes allow");
+	        return false;
+	    }   
+		
+		var newTextBoxDiv = $(document.createElement('div')).attr("id", 'TextBoxDiv' + counter);
+            newTextBoxDiv.after().html('<div class="col-md-3 col-sm-3 col-xs-3"><label for="textbox' + counter + '" >Skill #'+ counter + ' : </label>' +
+			'<input type="text" name="textbox' + counter +'" id="textbox' + counter + '" value="" class="form-control" placeholder="Enter skills"></div>'+
+			'<div class="col-md-3 col-sm-3 col-xs-3"><label for=""textboxhour' + counter +'"">Hour(s)</label><input type="text" name="textboxhour' + counter +'" id="textboxhour' + counter + '" value="" class="form-control" placeholder="Enter Hour"></div>'+
+			'<div class="col-md-4 col-sm-4 col-xs-4 "><label for=""textboxcmpx' + counter +'"">Complexcity Level</label><input type="text" name="textboxcmpx' + counter +'" id="textboxhour' + counter + '" value="" class="form-control" placeholder="Enter Hour"></div>');
+        
+		newTextBoxDiv.appendTo("#TextBoxesGroup");
+			
+	    counter++;
+    });
+
+    $("#removeButton").click(function () {
+	    if(counter==1){
+	        alert("No more textbox to remove");
+	        return false;
+	    }   
+        counter--;
+		
+        $("#TextBoxDiv" + counter).remove();
+	});
+	
+	$("#getButtonValue").click(function () {
+	
+		var msg = '';
+		for(i=1; i<counter; i++){
+			msg += "\n Skill #" + i + " : " + $('#textbox' + i).val()+ "\n Hour #" + i + " : " + $('#textboxhour' + i).val();
+		}
+	   	alert(msg);
+	});
+	
+});
+
+
+jQuery("#Task").jqGrid({
+   	url:'servercall?type=tasklist',
+	datatype: "json",
+   	colNames:['Task Id','Title','Status','Start Date','End Date','Actual End Date','Skills','Complexity Level', 'Description'],
+   	colModel:[
+   		{name:'id',index:'id', width:55},
+   		{name:'title',index:'title', width:150},
+   		{name:'status',index:'status', width:80},
+   		{name:'sdate',index:'sdate', width:80},
+   		{name:'edate',index:'edate', width:80},
+   		{name:'aedate',index:'aedate', width:100},		
+   		{name:'skills',index:'skills', width:150},
+   		{name:'clevel',index:'clevel', width:120},
+   		{name:'desc',index:'desc', width:200}		
+   	],
+   	rowNum:10,
+   	rowList:[10,20,30],
+   	pager: '#pager',
+   	sortname: 'id',
+    viewrecords: true,
+    sortorder: "desc",
+	multiselect: false,
+	caption: "Backlog",
+	editurl:"someurl.jsp",
+	height:210,
+	onSelectRow: function(ids) {
+		if(ids == null) {
+			ids=0;
+			if(jQuery("#Task_d").jqGrid('getGridParam','records') >0 )
+			{
+				jQuery("#Task_d").jqGrid('setGridParam',{url:"servercall?type=subgrid&q=1&id="+ids,page:1});
+				jQuery("#Task_d").jqGrid('setCaption',"Assignment Detail: "+ids)
+				.trigger('reloadGrid');
+			}
+		} else {
+			jQuery("#Task_d").jqGrid('setGridParam',{url:"servercall?type=subgrid&q=1&id="+ids,page:1});
+			jQuery("#Task_d").jqGrid('setCaption',"Assignment Detail: "+ids)
+			.trigger('reloadGrid');			
+		}
+	}
+});
+
+jQuery("#Task").jqGrid('navGrid','#pager',
+		{}, //options
+		{height:280,reloadAfterSubmit:false}, // edit options
+		{height:280,reloadAfterSubmit:false}, // add options
+		{reloadAfterSubmit:false}, // del options
+		{} // search options
+		);
+ 
+
+jQuery("#Task_d").jqGrid({
+	height: 100,
+   	url:'servercall?type=subgrid&q=1&id=0',
+	datatype: "json",
+   	colNames:['Name','Ratings','Status','Assigned', 'Start date','End date','Actual end date'],
+   	colModel:[
+   		{name:'name',index:'name', width:150},
+   		{name:'rating',index:'ratings', width:150},
+   		{name:'status',index:'status', width:60},
+   		{name:'hassigned',index:'hassigned', width:60},
+   		{name:'sdate',index:'sdate', width:80},
+   		{name:'edate',index:'edate', width:80},
+   		{name:'aedate',index:'aedate', width:100},
+   	],
+   	rowNum:5,
+   	rowList:[5,10,20],
+   	pager: '#pager_d',
+   	sortname: 'item',
+    viewrecords: true,
+    sortorder: "asc",
+	multiselect: true,
+	caption:"Resource allocation detail"
+}).navGrid('#pager_d',{add:false,edit:false,del:false});
+jQuery("#ms1").click( function() {
+	var s;
+	s = jQuery("#Task_d").jqGrid('getGridParam','selarrrow');
+	alert(s);
+});
+</script>
+<script src="jqgrid/js/jquery.tableCheckbox.js"></script> 
+<script>
+$('table').tableCheckbox({ /* options */ });
+</script> 
+<script type="text/javascript">
+ $(function() {
+	    $("#from").datepicker();
+	  });
+ </script> 
+</body>
+</html>
