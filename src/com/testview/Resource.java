@@ -33,10 +33,10 @@ public class Resource {
 	}
 
 	//m3
-	public  List<Resource> getResourceForTask(int userId,List<TaskSkills> taskSkill){
+	public  List<Resource> getResourceForTask(int userId,List<TaskSkills> taskSkill,String sdate,String edate){
 		List<Resource> rlist=null;
 				
-		if(userId!=0 && taskSkill!=null){		
+		if(userId!=0 && taskSkill!=null &&  sdate!=null && edate!=null){		
 		rlist=new ArrayList<Resource>();
 			
 		Resource r1= new Resource(10,"Deepak",4,"Open","12-10-2015","12-11-2015",30,60);
