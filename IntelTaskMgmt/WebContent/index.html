@@ -60,110 +60,63 @@
 								<div class="modal-body">
 
 
-									<div class="col-md-6">
+									<div class="col-md-12 col-sm-12 col-xs-12">
 										<div class="panel panel-primary">
-											<!-- <div class="panel-heading">Form</div> -->
+											<div class="panel-heading">Task Form</div>
 											<div class="panel-body">
 
 												<!-- Left div -->
 												<div class="container">
 													<form class="form-horizontal" role="form">
-														<div class="form-group">
-															<label class="control-label col-sm-2" for="email">Title:</label>
-															<div class="col-sm-3">
-																<input type="text" class="form-control" id="title"
-																	placeholder="Enter title">
+													
+														
+														<div class="row">
+															<div class="form-group col-md-4 col-sm-4 col-xs-4">
+																<label class="control-label" for="title">Title:</label>
+																<input type="text" class="form-control" id="title" placeholder="Enter title">
+															</div>
+															<div class="col-md-1 col-sm-1 col-xs-1"></div>
+															<div class="form-group col-md-3 col-sm-3 col-xs-3">
+															<label class="control-label" for="startdate">
+																Start Date:</label>
+																<input type="text" class="form-control" id="startdate" placeholder="Enter start date">
+															</div>
+															<div class="col-md-1 col-sm-1 col-xs-1"></div>
+															<div class="form-group col-md-3 col-sm-4 col-xs-3">
+																<label class="control-label" for="enddate">
+																End	Date:</label>
+																<input type="text" class="form-control" id="enddate" placeholder="Enter end date">
 															</div>
 														</div>
-														<div class="form-group">
-															<label class="control-label col-sm-2" for="pwd">Status:</label>
-															<div class="col-sm-3">
-																<input type="text" class="form-control" id="status"
-																	placeholder="Enter status">
+														<div class="row">
+															<div class="form-group col-md-11 col-sm-11 col-xs-11">
+																<label class="control-label" for="description">Description:</label>
+																<textarea  class="form-control" id="description" placeholder="Enter description"> </textarea>
+															</div>
+															<div class="col-md-1 col-sm-1 col-xs-1"></div>
+														</div>
+														<div class="row">	
+															<div class="form-group col-md-12 col-sm-12  col-xs-12">
+															<label class="control-label" >Skills:</label>
+															<input type='button' class="btn btn-primary btn-sm" value='Add Skill' id='addButton'>
+															<input type='button' class="btn btn-default btn-sm" value='Remove Skill' id='removeButton'>
+															<!-- <input type='button' class="btn btn-default btn-sm" value='Get Skill' id='getButtonValue'> -->
 															</div>
 														</div>
-														<div class="form-group">
-															<label class="control-label col-sm-2" for="pwd">Start
-																Date:</label>
-															<div class="col-sm-3">
-																<input type="text" class="form-control" id="startdate"
-																	placeholder="Enter start date">
-															</div>
-														</div>
-														<div class="form-group">
-															<label class="control-label col-sm-2" for="pwd">End
-																Date:</label>
-															<div class="col-sm-3">
-																<input type="text" class="form-control" id="enddate"
-																	placeholder="Enter end date">
-															</div>
-														</div>
-
-														<div class="form-group">
-															<label class="control-label col-sm-2" for="pwd">Actual
-																End Date:</label>
-															<div class="col-sm-3">
-																<input type="text" class="form-control"
-																	id="actualenddate" placeholder="Enter actual end date">
-															</div>
-														</div>
-
-														<div class="form-group">
-															<label class="control-label col-sm-2" for="pwd">Skills:</label>
-															<div class="col-sm-3" id='TextBoxesGroup'>
-																<div id="TextBoxDiv1">
-
-																	<!-- <input type="text" class="form-control" id="textbox1" placeholder="Enter skills"> -->
-																</div>
-
-																<div>
-																	<input type='button' class="btn btn-primary btn-sm"
-																		value='Add Skill' id='addButton'> <input
-																		type='button' class="btn btn-default btn-sm"
-																		value='Remove Skill' id='removeButton'>
-																	<!-- <input type='button' class="btn btn-default btn-sm" value='Get Skill' id='getButtonValue'> -->
-																</div>
-
-
-															</div>
+														
+														<div class="form-group col-md-12 col-sm-12  col-xs-12" id='TextBoxesGroup'>
+															<!-- List of skills -->
 														</div>
 
-														<div class="form-group">
-															<label class="control-label col-sm-2" for="pwd">Complexity
-																Level:</label>
-															<div class="col-sm-3">
-																<input type="text" class="form-control"
-																	id="complexitylevel"
-																	placeholder="Enter complexity level">
-															</div>
+														<div class="form-group col-md-12 col-sm-12  col-xs-12">
+															<label class="control-label" for="getRButton">Allocate Resources:</label>
+															<input type='button' class="btn btn-primary btn-sm" value='Get Resource' id='getRButton'>
 														</div>
-														<div class="form-group">
-															<label class="control-label col-sm-2" for="pwd">Allocate
-																Resources:</label>
-															<div class="col-sm-3">
-																<input type='button' class="btn btn-primary btn-sm"
-																	value='Get Resource' id='getRButton'>
-															</div>
-														</div>
-														<div class="form-group">
-															<label class="control-label col-sm-2" for="description">Description:</label>
-															<div class="col-sm-3">
-																<input type="text" class="form-control" id="description"
-																	placeholder="Enter description">
-															</div>
-														</div>
-														<!-- <div class="form-group">
-												<div class="col-sm-offset-2 col-sm-10">
-													<div class="checkbox">
-														<label><input type="checkbox"> Allocate resources</label>
-													</div>
-												</div>
-											</div> -->
-														<div class="form-group">
-															<div class="col-sm-offset-2 col-sm-10">
+
+														<div class="form-group col-md-2 col-sm-2  col-xs-2">
 																<button type="submit" class="btn btn-primary">Submit</button>
-															</div>
 														</div>
+
 													</form>
 												</div>
 												<!-- /	Left div -->
@@ -172,23 +125,9 @@
 									</div>
 
 
-									<div class="col-md-6">
-										<div class="panel panel-primary">
-											<div class="panel-heading">Resouce Suggestion</div> -->
-											<div class="panel-body">
-												<!-- 	Right div -->
-												<ul>
-												<li>1 Deepak</li>
-												<li>2 Deepak</li>
-												<li>3 Deepak</li>
-												<li>4 Deepak</li>
-												
-												</ul>
 
-												<!-- /	Right div -->
-											</div>
-										</div>
-									</div>
+													
+													
 
 
 
@@ -239,11 +178,10 @@ $(document).ready(function(){
 	    }   
 		
 		var newTextBoxDiv = $(document.createElement('div')).attr("id", 'TextBoxDiv' + counter);
-            newTextBoxDiv.after().html('<label>Skill #'+ counter + ' : </label>' +
-			'<input type="text" name="textbox' + counter + 
-			'" id="textbox' + counter + '" value="" class="form-control" placeholder="Enter skills">'+
-			'<input type="text" name="textboxhour' + counter +
-			'" id="textboxhour' + counter + '" value="" class="form-control" placeholder="Enter Hour">');
+            newTextBoxDiv.after().html('<div class="col-md-3 col-sm-3 col-xs-3"><label for="textbox' + counter + '" >Skill #'+ counter + ' : </label>' +
+			'<input type="text" name="textbox' + counter +'" id="textbox' + counter + '" value="" class="form-control" placeholder="Enter skills"></div>'+
+			'<div class="col-md-3 col-sm-3 col-xs-3"><label for=""textboxhour' + counter +'"">Hour(s)</label><input type="text" name="textboxhour' + counter +'" id="textboxhour' + counter + '" value="" class="form-control" placeholder="Enter Hour"></div>'+
+			'<div class="col-md-4 col-sm-4 col-xs-4 "><label for=""textboxcmpx' + counter +'"">Complexcity Level</label><input type="text" name="textboxcmpx' + counter +'" id="textboxhour' + counter + '" value="" class="form-control" placeholder="Enter Hour"></div>');
         
 		newTextBoxDiv.appendTo("#TextBoxesGroup");
 			
