@@ -1,0 +1,60 @@
+-- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
+--
+-- Host: localhost    Database: intel
+-- ------------------------------------------------------
+-- Server version	5.7.9-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `resource_table`
+--
+
+DROP TABLE IF EXISTS `resource_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `resource_table` (
+  `R_ID` int(11) NOT NULL,
+  `R_Name` varchar(45) DEFAULT NULL,
+  `R_BusinessUnit` varchar(45) DEFAULT NULL,
+  `R_Project` varchar(45) DEFAULT NULL,
+  `R_Skill` varchar(45) DEFAULT NULL,
+  `R_Rating` int(11) DEFAULT NULL,
+  `R_WorkHour` int(11) DEFAULT NULL,
+  `R_OccupiedPercentage` varchar(45) DEFAULT NULL,
+  `R_Manager` varchar(50) DEFAULT NULL,
+  `R_DH` varchar(50) DEFAULT NULL,
+  `R_SPM` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`R_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Creating table for details of Resources';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `resource_table`
+--
+
+LOCK TABLES `resource_table` WRITE;
+/*!40000 ALTER TABLE `resource_table` DISABLE KEYS */;
+INSERT INTO `resource_table` VALUES (1,'Deepak','CFO','frpa','java',4,6,'75','Sundeep','Prasad','Bhupesh'),(2,'Sravani','CFO','frpa','odi',4,6,'60','Sundeep','Prasad','Bhupesh'),(3,'Madhuri','CFO','frpa','selenium',4,6,'52','Sundeep','Prasad','Bhupesh'),(4,'Sreenivas','CFO','frpa','Essabse',3,6,'35','Raghu','Prasad','Bhupesh'),(5,'Balaji','CFO','frpa','unix',4,6,'63','Raghu','Prasad','Bhupesh'),(6,'Phani','CFO','frpa','odi',3,6,'55','Raghu','Prasad','Bhupesh'),(7,'Sai Kiran','CFO','frpa','java',2,6,'40','Raghu','Prasad','Bhupesh'),(8,'Srikanth','CFO','frpa','selenium',3,6,'80','Sundeep','Prasad','Bhupesh'),(9,'Sundeep','CFO','frpa',NULL,NULL,6,NULL,'Bhupesh','Prasad','Bhupesh'),(10,'Anil','CFO','frpa','OBIEE',4,6,'75','Julie','Prasad','Bhupesh'),(11,'Bhanu','CFO','frpa','Essbase',3,6,'55','Julie','Prasad','Bhupesh'),(12,'Shabber','CFO','frpa','Unix',3,5,'56','Julie','Prasad','Bhupesh'),(13,'Lakshmi','CFO','frpa','OBIEE',3,5,'48','Julie','Prasad','Bhupesh'),(14,'Raghu','CFO','frpa',NULL,NULL,6,'','Bhupesh','Prasad','Bhupesh'),(15,'Julie','CFO','frpa',NULL,NULL,6,NULL,'Bhupesh','Prasad','Bhupesh');
+/*!40000 ALTER TABLE `resource_table` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2015-10-30  6:56:10
