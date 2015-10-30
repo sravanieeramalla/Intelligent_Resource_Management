@@ -14,6 +14,7 @@ public class Resource {
 	int occupiedpercentage=0;
 	int availiblityStatus=0;
 	
+	//m2
 	public  List<Resource> getResourceByTaskId(int taskId){
 		List<Resource> rlist=null;
 				
@@ -31,6 +32,7 @@ public class Resource {
 		return rlist;
 	}
 
+	//m3
 	public  List<Resource> getResourceForTask(int userId,List<TaskSkills> taskSkill){
 		List<Resource> rlist=null;
 				
