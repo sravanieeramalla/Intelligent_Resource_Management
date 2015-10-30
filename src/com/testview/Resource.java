@@ -11,6 +11,8 @@ public class Resource {
 	String status=null;
 	String sdate=null;
 	String edate=null;
+	int occupiedpercentage=0;
+	int availiblityStatus=0;
 	
 	public  List<Resource> getResourceByTaskId(int taskId){
 		List<Resource> rlist=null;
@@ -18,9 +20,9 @@ public class Resource {
 		if(taskId!=0){		
 		rlist=new ArrayList<Resource>();
 			
-		Resource r1= new Resource(10,"Deepak",4,"Open","12-10-2015","12-11-2015");
-		Resource r2= new Resource(11,"Sravani",5,"Open","02-10-2015","29-11-2015");
-		Resource r3= new Resource(12,"Madhuri",3,"Open","12-09-2015","12-12-2015");
+		Resource r1= new Resource(10,"Deepak",4,"Open","12-10-2015","12-11-2015",30,60);
+		Resource r2= new Resource(11,"Sravani",5,"Open","02-10-2015","29-11-2015",50,50);
+		Resource r3= new Resource(12,"Madhuri",3,"Open","12-09-2015","12-12-2015",80,20);
 		
 		rlist.add(r1);
 		rlist.add(r2);
@@ -29,15 +31,25 @@ public class Resource {
 		return rlist;
 	}
 
-	public Resource(int id, String name, int ratings, String status,
-			String sdate, String edate) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.ratings = ratings;
-		this.status = status;
-		this.sdate = sdate;
-		this.edate = edate;
+	public  List<Resource> getResourceForTask(int userId,List<TaskSkills> taskSkill){
+		List<Resource> rlist=null;
+				
+		if(userId!=0 && taskSkill!=null){		
+		rlist=new ArrayList<Resource>();
+			
+		Resource r1= new Resource(10,"Deepak",4,"Open","12-10-2015","12-11-2015",30,60);
+		Resource r2= new Resource(11,"Sravani",5,"Open","02-10-2015","29-11-2015",50,50);
+		Resource r3= new Resource(12,"Madhuri",3,"Open","12-09-2015","12-12-2015",80,20);
+		
+		rlist.add(r1);
+		rlist.add(r2);
+		rlist.add(r3);
+		}
+		return rlist;
+	}
+
+	
+	public Resource() {
 	}
 
 	public int getId() {
@@ -87,8 +99,37 @@ public class Resource {
 	public void setEdate(String edate) {
 		this.edate = edate;
 	}
-	
-	
- 
 
+	public int getOccupiedpercentage() {
+		return occupiedpercentage;
+	}
+
+	public void setOccupiedpercentage(int occupiedpercentage) {
+		this.occupiedpercentage = occupiedpercentage;
+	}
+
+	public int getAvailiblityStatus() {
+		return availiblityStatus;
+	}
+
+	public void setAvailiblityStatus(int availiblityStatus) {
+		this.availiblityStatus = availiblityStatus;
+	}
+
+	public Resource(int id, String name, int ratings, String status,
+			String sdate, String edate, int occupiedpercentage,
+			int availiblityStatus) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.ratings = ratings;
+		this.status = status;
+		this.sdate = sdate;
+		this.edate = edate;
+		this.occupiedpercentage = occupiedpercentage;
+		this.availiblityStatus = availiblityStatus;
+	}
+
+
+	
 }

@@ -16,11 +16,11 @@ public class Task {
 	
 	public List<Task> getTaskList(){
 		
-		ArrayList skills=new ArrayList<String>();
+		ArrayList<String> skills=new ArrayList<String>();
 		skills.add("Java");
 		skills.add("DB");
 		
-		ArrayList tlist=new ArrayList<Task>();
+		ArrayList<Task> tlist=new ArrayList<Task>();
 		Task t1 = new Task(101,"PACE","Completed","12-03-2013","12-07-2014","15-08-2014",skills,4);
 		Task t2 = new Task(102,"VzTime","Completed","11-05-2013","10-10-2014","15-10-2014",skills,5);		
 		
