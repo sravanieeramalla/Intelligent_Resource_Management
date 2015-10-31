@@ -16,38 +16,39 @@ public class Resource {
 	
 	//m2
 	public  List<Resource> getResourceByTaskId(int taskId){
-		List<Resource> rlist=null;
+		List<Resource> rows=null;
 				
-		if(taskId!=0){		
-		rlist=new ArrayList<Resource>();
+		if(taskId!=0 ){		
+			rows=new ArrayList<Resource>();
 			
 		Resource r1= new Resource(10,"Deepak",4,"Open","12-10-2015","12-11-2015",30,60);
 		Resource r2= new Resource(11,"Sravani",5,"Open","02-10-2015","29-11-2015",50,50);
 		Resource r3= new Resource(12,"Madhuri",3,"Open","12-09-2015","12-12-2015",80,20);
 		
-		rlist.add(r1);
-		rlist.add(r2);
-		rlist.add(r3);
+		rows.add(r1);
+		rows.add(r2);
+		if(taskId==101)
+			rows.add(r3);
 		}
-		return rlist;
+		return rows;
 	}
 
 	//m3
 	public  List<Resource> getResourceForTask(int userId,List<TaskSkills> taskSkill,String sdate,String edate){
-		List<Resource> rlist=null;
+		List<Resource> rows=null;
 				
 		if(userId!=0 && taskSkill!=null &&  sdate!=null && edate!=null){		
-		rlist=new ArrayList<Resource>();
+			rows=new ArrayList<Resource>();
 			
 		Resource r1= new Resource(10,"Deepak",4,"Open","12-10-2015","12-11-2015",30,60);
 		Resource r2= new Resource(11,"Sravani",5,"Open","02-10-2015","29-11-2015",50,50);
 		Resource r3= new Resource(12,"Madhuri",3,"Open","12-09-2015","12-12-2015",80,20);
 		
-		rlist.add(r1);
-		rlist.add(r2);
-		rlist.add(r3);
+		rows.add(r1);
+		rows.add(r2);
+		rows.add(r3);
 		}
-		return rlist;
+		return rows;
 	}
 
 	

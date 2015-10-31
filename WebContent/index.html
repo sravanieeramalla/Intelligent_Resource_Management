@@ -361,7 +361,7 @@ $(document).ready(function(){
 
 
 jQuery("#Task").jqGrid({
-   	url:'servercall?type=tasklist',
+   	url:'servercall?type=tasklist&formate=JSON',
 	datatype: "json",
    	colNames:['Task Id','Title','Status','Start Date','End Date','Actual End Date','Skills','Complexity Level', 'Description'],
    	colModel:[

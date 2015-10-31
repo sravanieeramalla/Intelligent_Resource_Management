@@ -9,4 +9,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>servercall</display-name>
+    <servlet-name>servercall</servlet-name>
+    <servlet-class>com.servlet.servercall</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>servercall</servlet-name>
+    <url-pattern>/servercall</url-pattern>
+  </servlet-mapping>
 </web-app>
