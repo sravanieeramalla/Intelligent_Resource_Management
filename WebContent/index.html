@@ -15,10 +15,9 @@
 <script type="text/ecmascript" src="jqgrid/js/jquery.jqGrid.js"></script>
 <script type="text/ecmascript" src="jqgrid/js/grid.locale-en.js"></script>
 
-
 <link rel="stylesheet" href="jqgrid/css/github.css">
 <script src="jqgrid/js/highlight.pack.js" type="text/javascript"></script>
-<script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript"></script>
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
 
  <script type="text/javascript">
@@ -29,30 +28,28 @@
  
  </script>
   
-   
-
 <link rel="stylesheet" type="text/css" media="screen" href="jqgrid/css/ui.jqgrid.css" />	
-	
+<script src="jqgrid/js/jquery.tableCheckbox.js" type="text/javascript"></script>
+<script type="text/ecmascript" src="jqgrid/js/jquery-progresspiesvg-min.js"></script>
  
 </head>
 <body>
 
 
 	<div id="exTab3" class="container">
-	<h3>FRPA</h3>
-		<ul class="nav nav-pills">
-		
-			<li class="active"><a href="#1b" data-toggle="tab">Task</a>
-			</li>
+		<h3>FRPA</h3>
+		<!-- <ul class="nav nav-pills">
+
+			<li class="active"><a href="#1b" data-toggle="tab">Task</a></li>
 			<li><a href="#2b" data-toggle="tab">Resources</a></li>
 			<li><a href="#3b" data-toggle="tab">Dashboard</a></li>
-		</ul>
+		</ul> -->
 
 		<div class="tab-content clearfix">
 			<div class="tab-pane active" id="1b">
 				<br />
 
-				<!-- add task -->	
+				<!-- add task -->
 				<div class="container">
 					<!-- Trigger the modal with a button -->
 					<button type="button" class="btn btn-info btn-md"
@@ -79,198 +76,122 @@
 												<!-- Left div -->
 												<div class="container">
 													<form class="form-horizontal" role="form">
-													
-														
+
+
 														<div class="row">
 															<div class="form-group col-md-3 col-sm-3 col-xs-3">
 																<label class="control-label" for="title">Title:</label>
-																<input type="text" class="form-control" id="title" placeholder="Enter title">
+																<input type="text" class="form-control" id="title"
+																	placeholder="Enter title">
 															</div>
 															<div class="col-md-1 col-sm-1 col-xs-1"></div>
 															<div class="form-group col-md-3 col-sm-3 col-xs-3">
-															<label class="control-label" for="startdate">
-																Start Date:</label>
-																<input type="text" class="form-control" id="startdate" placeholder="Enter start date">
+																<label class="control-label" for="sdate">
+																	Start Date:</label> <input type="text" class="form-control"
+																	id="sdate" placeholder="Enter start date">
 															</div>
 															<div class="col-md-1 col-sm-1 col-xs-1"></div>
-															<div class="form-group col-md-3 col-sm-4 col-xs-3">
-																<label class="control-label" for="enddate">
-																End	Date:</label>
-																<input type="text" class="form-control" id="enddate" placeholder="Enter end date">
+															<div class="form-group col-md-3 col-sm-3 col-xs-3">
+																<label class="control-label" for="edate"> End
+																	Date:</label> <input type="text" class="form-control"
+																	id="edate" placeholder="Enter end date">
 															</div>
+															<div class="col-md-1 col-sm-1 col-xs-1"></div>
 														</div>
 														<div class="row">
-															<div class="form-group col-md-10 col-sm-10 col-xs-10">
+															<div class="form-group col-md-11 col-sm-11 col-xs-11">
 																<label class="control-label" for="description">Description:</label>
-																<textarea  class="form-control" id="description" placeholder="Enter description"> </textarea>
+																<input type="text" class="form-control" id="description"
+																	placeholder="Enter description">
 															</div>
 															<div class="col-md-1 col-sm-1 col-xs-1"></div>
 														</div>
-														<div class="row">	
+														<div class="row">
 															<div class="form-group col-md-12 col-sm-12  col-xs-12">
-															<label class="control-label" >Skills:</label>
-															<input type='button' class="btn btn-primary btn-sm" value='Add Skill' id='addButton'>
-															<input type='button' class="btn btn-default btn-sm" value='Remove Skill' id='removeButton'>
-															<!-- <input type='button' class="btn btn-default btn-sm" value='Get Skill' id='getButtonValue'> -->
+																<label class="control-label">Skills:</label> <input
+																	type='button' class="btn btn-primary btn-sm"
+																	value='Add Skill' id='addButton'> <input
+																	type='button' class="btn btn-default btn-sm"
+																	value='Remove Skill' id='removeButton'>
+																    <input type='button' class="btn btn-default btn-sm" value='Get Skill' id='getButtonValue'> 
 															</div>
 														</div>
-														
-														<div class="form-group col-md-12 col-sm-12  col-xs-12" id='TextBoxesGroup'>
+
+														<div class="form-group col-md-12 col-sm-12  col-xs-12"
+															id='TextBoxesGroup'>
 															<!-- List of skills -->
 														</div>
 														<div class="row">
-														<div class="form-group col-md-12 col-sm-12  col-xs-12">
-															<label class="control-label" for="getRButton">Allocate Resources:</label>
-															<input type='button' class="btn btn-primary btn-sm" value='Get Resource' id='getRButton'>
-														</div>
-														</div>
-
-														<div class="form-group col-md-11 col-sm-11  col-xs-11">
-														
-																<div class="panel panel-default"> 
-																<div class="panel-body">
-
-
-														<div class="row">
-															<div class="col-md-4 col-sm-4 col-xs-4"></div>
-															<div class="form-group col-md-7 col-sm-7 col-xs-7">
-																<label for="fromdate">From</label>
-																<input type="text" id="fromdate" name="fromdate">
-																<label for="to">to</label>
-																<input type="text" id="to" name="to">
-															</div>
-															
-														</div>
-														<HR>
-														
-															<div class="row">
-															<div class="col-md-1 col-sm-1 col-xs-1"></div>
-															<div class="form-group col-md-3 col-sm-3 col-xs-3">
-																<label class="control-label" for="dh">DH:</label>
-																<select class="form-control" id="dh">
-															        <option>Ashish</option>
-															        <option>Prasad</option>
-															        <option>Koushik</option>
-															     </select>
-															</div>
-															<div class="col-md-1 col-sm-1 col-xs-1"></div>
-															<div class="form-group col-md-3 col-sm-3 col-xs-3">
-															<label class="control-label" for="spm">SPM:</label>
-																<select class="form-control" id="spm">
-															        <option>Bhupesh</option>
-															        <option>Vijay</option>
-															        <option>Aanand</option>
-															     </select>
-															</div>
-															<div class="col-md-1 col-sm-1 col-xs-1"></div>
-															<div class="form-group col-md-3 col-sm-4 col-xs-3">
-																<label class="control-label" for="manager">Manager:</label>
-																<select class="form-control" id="manager">
-															        <option>Sundeep</option>
-															        <option>Julie</option>
-															        <option>Bindu</option>
-															     </select>
+															<div class="form-group col-md-12 col-sm-12  col-xs-12">
+																<label class="control-label" for="getRButton">Allocate
+																	Resources:</label> <input type='button'
+																	class="btn btn-primary btn-sm" value='Get Resource'
+																	id='getRButton'>
 															</div>
 														</div>
-														
-															
-															
-															
-																<div class="col-md-12 col-sm-12  col-xs-12">
-																<table class="table table-bordered table-striped">
-																	<thead>
-																		<th style="width: 20px;"></th><th>Resource Name</th><th>Status</th><th>Occupied</th><th>Ratings</th>
-																	</thead>
-																			<tbody>
-																				<tr>
-																					<td><input type="checkbox"></td>
-																					<td>Sravani</td>
-																					<td>
-																						<div class="progress">
-  																							<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:60%">60%</div>
-																							<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">40%</div>
-																						</div>
-																					</td>
-																					<td><p><span class="pp dyncolor">65</span> %</p></td>
-																					<td><p>5</p></td>
-																				</tr>
-																				<tr>
-																					<td><input type="checkbox"></td>
-																					<td>Deepak</td>
-																					<td>
-																						<div class="progress">
-  																							<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:60%">60%</div>
-																							<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">40%</div>
-																						</div>
-																					</td>
-																					<td><p><span class="pp dyncolor">65</span> %</p></td>
-																					<td><p>5</p></td>
-																				</tr>
-																				<tr>
-																					<td><input type="checkbox"></td>
-																					<td>Madhuri</td>
-																					<td>
-																						<div class="progress">
-  																							<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:60%">60%</div>
-																							<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">40%</div>
-																						</div>
-																					</td>
-																					<td><p><span class="pp dyncolor">65</span> %</p></td>
-																					<td><p>5</p></td>
-																				</tr>
-																				<tr>
-																					<td><input type="checkbox"></td>
-																					<td>Sundeep</td>
-																					<td>
-																						<div class="progress">
-  																							<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:60%">60%</div>
-																							<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">40%</div>
-																						</div>
-																					</td>
-																					<td><p><span class="pp dyncolor">65</span> %</p></td>
-																					<td><p>5</p></td>
-																				</tr>
-																				<tr>
-																					<td><input type="checkbox"></td>
-																					<td>Anil</td>
-																					<td>
-																						<div class="progress">
-  																							<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:60%">60%</div>
-																							<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">40%</div>
-																						</div>
-																					</td>
-																					<td><p><span class="pp dyncolor">65</span> %</p></td>
-																					<td><p>5</p></td>
-																				</tr>
-																				<tr>
-																					<td><input type="checkbox"></td>
-																					<td>Srinivas</td>
-																					<td>
-																						<div class="progress">
-  																							<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:60%">60%</div>
-																							<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">40%</div>
-																						</div>
-																					</td>
-																					<td><p><span class="pp dyncolor">65</span> %</p></td>
-																					<td><p>5</p></td>
-																				</tr>
-																			</tbody>
-																		</table>
+
+														<div class="form-group col-md-11 col-sm-11  col-xs-11" id="resoucecontainer">
+
+															<div class="panel panel-default">
+																<div class="panel-body" >
+
+
+																	<!-- <div class="row">
+																		<div class="col-md-4 col-sm-4 col-xs-4"></div>
+																		<div class="form-group col-md-7 col-sm-7 col-xs-7">
+																			<label for="fromdate">From</label> <input type="text"
+																				id="fromdate" name="fromdate"> <label
+																				for="to">to</label> <input type="text" id="to"
+																				name="to">
+																		</div>
+
+																	</div>
+																	<HR>
+ -->
+																	<div class="row">
+																		<div class="col-md-1 col-sm-1 col-xs-1"></div>
+																		<div class="form-group col-md-3 col-sm-3 col-xs-3">
+																			<label class="control-label" for="dh">DH:</label> <select
+																				class="form-control" id="dh">
+																				
+																			</select>
+																		</div>
+																		<div class="col-md-1 col-sm-1 col-xs-1"></div>
+																		<div class="form-group col-md-3 col-sm-3 col-xs-3">
+																			<label class="control-label" for="spm">SPM:</label> <select
+																				class="form-control" id="spm">
+																				
+																			</select>
+																		</div>
+																		<div class="col-md-1 col-sm-1 col-xs-1"></div>
+																		<div class="form-group col-md-3 col-sm-4 col-xs-3">
+																			<label class="control-label" for="manager">Manager:</label>
+																			<select class="form-control" id="manager">
+																				
+																			</select>
+																		</div>
+																	</div>
+
+
+
+
+																	<div class="col-md-12 col-sm-12  col-xs-12" id="resourcetable">
+																		
+																	</div>
+
+
+
+
+
+																</div>
 															</div>
-
-
-
-
-
-													</div>
-													</div>
 
 														</div>
 														<div class="row">
-														<div class="form-group col-md-10 col-sm-10  col-xs-10"></div>
-														<div class="form-group col-md-2 col-sm-2  col-xs-2">
+															<div class="form-group col-md-10 col-sm-10  col-xs-10"></div>
+															<div class="form-group col-md-2 col-sm-2  col-xs-2">
 																<button type="submit" class="btn btn-primary">Submit</button>
-														</div>
+															</div>
 														</div>
 													</form>
 												</div>
@@ -289,17 +210,17 @@
 								</div>
 							</div>
 
-									</div>
-								</div>
-								<!--\ Modal -->
+						</div>
+					</div>
+					<!--\ Modal -->
 				</div>
 				<!-- \add task -->
-				<br/>
+				<br />
 
 
 				<table id="Task"></table>
 				<div id="pager"></div>
-				<br /> 
+				<br />
 				<table id="Task_d"></table>
 				<div id="pager_d"></div>
 
@@ -314,10 +235,14 @@
 		</div>
 	</div>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 
 $(document).ready(function(){
 
+	hljs.initHighlightingOnLoad();
+	$(".pp.dyncolor").progressPie({mode:$.fn.progressPie.Mode.COLOR, valueData:"val", size:50, strokeWidth: 0});
+	$('table').tableCheckbox({ /* options */});
+	
     var counter = 1;
 	
     $("#addButton").click(function () {
@@ -331,7 +256,7 @@ $(document).ready(function(){
             newTextBoxDiv.after().html('<div class="col-md-3 col-sm-3 col-xs-3"><label for="textbox' + counter + '" >Skill #'+ counter + ' : </label>' +
 			'<input type="text" name="textbox' + counter +'" id="textbox' + counter + '" value="" class="form-control" placeholder="Enter skills"></div>'+
 			'<div class="col-md-3 col-sm-3 col-xs-3"><label for=""textboxhour' + counter +'"">Hour(s)</label><input type="text" name="textboxhour' + counter +'" id="textboxhour' + counter + '" value="" class="form-control" placeholder="Enter Hour"></div>'+
-			'<div class="col-md-4 col-sm-4 col-xs-4 "><label for=""textboxcmpx' + counter +'"">Complexcity Level</label><input type="text" name="textboxcmpx' + counter +'" id="textboxhour' + counter + '" value="" class="form-control" placeholder="Enter Hour"></div>');
+			'<div class="col-md-4 col-sm-4 col-xs-4 "><label for=""textboxcmpx' + counter +'"">Complexcity Level</label><input type="text" name="textboxcmpx' + counter +'" id="textboxcmpx' + counter + '" value="" class="form-control" placeholder="Enter skill level"></div>');
         
 		newTextBoxDiv.appendTo("#TextBoxesGroup");
 			
@@ -348,82 +273,104 @@ $(document).ready(function(){
         $("#TextBoxDiv" + counter).remove();
 	});
 	
-	$("#getButtonValue").click(function () {
+    $("#resoucecontainer").hide();
+/* 	$("#getButtonValue").click(function () {
 	
 		var msg = '';
 		for(i=1; i<counter; i++){
-			msg += "\n Skill #" + i + " : " + $('#textbox' + i).val()+ "\n Hour #" + i + " : " + $('#textboxhour' + i).val();
+			msg += $('#textbox' + i).val()+ ":" + $('#textboxhour' + i).val()+":" + $('#textboxcmpx' + i).val()+",";
 		}
 	   	alert(msg);
-	});
+	}); */
+	
+	
+    $("#getRButton").click(function() { 
+    	$("#resoucecontainer").show();
+
+		var title = $("#title").val();
+		var sdate = $("#sdate").val();
+		var edate = $("#edate").val();
+		
+		var skill = '';
+		for(i=1; i<counter; i++){
+			skill += $('#textbox' + i).val()+ ":" + $('#textboxhour' + i).val()+":" + $('#textboxcmpx' + i).val()+",";
+		}
+		
+		var dataString = 'title='+ title + '&sdate=' + sdate + '&edate=' + edate + '&skill=' + skill;
+
+        $.ajax({ 
+            type: "GET", 
+            url: "servercall?formate=JSON&type=suggestedresourcelist", 
+            data: dataString,
+			dataType: "json",			
+            success: function(response) { 
+               
+            	$("#dh").append('<option value=1>'+response.dh+'</option>');
+            	$("#spm").append('<option value=1>'+response.spm+'</option>');
+            	$("#manager").append('<option value=1>'+response.manager+'</option>');
+            	
+            	var tableStr="<table>";
+                var tableHeader="";
+                for(i=0;i<response.tableData.header.length;i++){
+                 tableHeader+=("<th align=\"center\">"+response.tableData.header[i]+"</th>");
+                }
+                tableHeader="<thead><tr>"+tableHeader+"</tr></thead>";
+                var tableBody="";
+                for(i=0;i<response.tableData.rows.length;i++){
+                    var tableRow="";
+                        for(j=0;j<response.tableData.rows[i].length;j++){
+                        	
+                        	if(j==0){//input textfield
+                        		if(response.tableData.rows[i][j]==true){
+                          		tableRow+="<td><input type=\"checkbox\" name=\"resId_\""+i+" checked></td>";
+                        		}else{ 
+                        			tableRow+="<td><input type=\"checkbox\" name=\"resId_\""+i+" ></td>";
+                        		}
+                        	}else if(j==1){//input textfield
+                          		tableRow+="<td><input type=\"text\" class=\"form-control\" id=\"title\" placeholder=\"Enter title\" value=\""+response.tableData.rows[i][j]+"\"></td>";
+                        	}else if(j==3){//Status	
+                        		tableRow+="<td><div class=\"progress\"><div class=\"progress-bar progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: "+response.tableData.rows[i][j]+"%\">"+response.tableData.rows[i][j]+"%</div><div class=\"progress-bar progress-bar-success progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: "+(100-response.tableData.rows[i][j])+"%\">"+(100-response.tableData.rows[i][j])+"%</div></div></td>";
+                        	}else if(j==4){//Occupied
+                        		tableRow+="<td align=\"center\"><p><span class=\"pp dyncolor\">"+response.tableData.rows[i][j]+"</span> %</p></td>";
+                        	}else {
+                        		 tableRow+="<td align=\"center\">"+response.tableData.rows[i][j]+"</td>";
+                        	}
+                        
+                        }
+                        tableBody=tableBody+"<tr>"+tableRow+"</tr>";
+                }       
+                tableBody="<tbody>"+tableBody+"</tbody>";
+                $('#resourcetable').empty();
+                $('#resourcetable').append("<div class=\"col-md-12 col-sm-12  col-xs-12\" id=\"resourcetable\"><table class=\"table table-bordered table-striped\">"+tableHeader+tableBody+"</table></div>");
+                
+				
+				
+                
+				
+				
+            } 
+        }); 
+        return false;     
+     }); 
+	
+	
 	
 });
 
 
-jQuery("#Task").jqGrid({
-   	url:'servercall?type=tasklist&formate=JSON',
-	datatype: "json",
-   	colNames:['Task Id','Title','Status','Start Date','End Date','Actual End Date','Skills','Complexity Level', 'Description'],
-   	colModel:[
-   		{name:'id',index:'id', width:55},
-   		{name:'title',index:'title', width:150},
-   		{name:'status',index:'status', width:80},
-   		{name:'sdate',index:'sdate', width:80},
-   		{name:'edate',index:'edate', width:80},
-   		{name:'aedate',index:'aedate', width:100},		
-   		{name:'skills',index:'skills', width:150},
-   		{name:'clevel',index:'clevel', width:120},
-   		{name:'desc',index:'desc', width:200}		
-   	],
-   	rowNum:10,
-   	rowList:[10,20,30],
-   	pager: '#pager',
-   	sortname: 'id',
-    viewrecords: true,
-    sortorder: "desc",
-	multiselect: false,
-	caption: "Backlog",
-	editurl:"someurl.jsp",
-	height:210,
-	onSelectRow: function(ids) {
-		if(ids == null) {
-			ids=0;
-			if(jQuery("#Task_d").jqGrid('getGridParam','records') >0 )
-			{
-				jQuery("#Task_d").jqGrid('setGridParam',{url:"servercall?type=subgrid&q=1&id="+ids,page:1});
-				jQuery("#Task_d").jqGrid('setCaption',"Assignment Detail: "+ids)
-				.trigger('reloadGrid');
-			}
-		} else {
-			jQuery("#Task_d").jqGrid('setGridParam',{url:"servercall?type=subgrid&q=1&id="+ids,page:1});
-			jQuery("#Task_d").jqGrid('setCaption',"Assignment Detail: "+ids)
-			.trigger('reloadGrid');			
-		}
-	}
-});
-
-jQuery("#Task").jqGrid('navGrid','#pager',
-		{}, //options
-		{height:280,reloadAfterSubmit:false}, // edit options
-		{height:280,reloadAfterSubmit:false}, // add options
-		{reloadAfterSubmit:false}, // del options
-		{} // search options
-		);
- 
-
 jQuery("#Task_d").jqGrid({
 	height: 100,
-   	url:'servercall?type=subgrid&q=1&id=0',
+   	url:'servercall?formate=JSON&type=taskresource&id=101',
 	datatype: "json",
-   	colNames:['Name','Ratings','Status','Assigned', 'Start date','End date','Actual end date'],
+   	colNames:['Name','Ratings','Status','Assigned Hour(s)', 'Start date','End date','Actual end date'],
    	colModel:[
    		{name:'name',index:'name', width:150},
-   		{name:'rating',index:'ratings', width:150},
-   		{name:'status',index:'status', width:60},
-   		{name:'hassigned',index:'hassigned', width:60},
-   		{name:'sdate',index:'sdate', width:80},
-   		{name:'edate',index:'edate', width:80},
-   		{name:'aedate',index:'aedate', width:100},
+   		{name:'ratings',index:'ratings', width:150,align:"center"},
+   		{name:'status',index:'status', width:60,align:"left"},
+   		{name:'assignedhour',index:'assignedhour', width:120,align:"center"},
+   		{name:'sdate',index:'sdate', width:80,align:"center"},
+   		{name:'edate',index:'edate', width:80,align:"center"},
+   		{name:'aedate',index:'aedate', width:100,align:"center"},
    	],
    	rowNum:5,
    	rowList:[5,10,20],
@@ -431,27 +378,107 @@ jQuery("#Task_d").jqGrid({
    	sortname: 'item',
     viewrecords: true,
     sortorder: "asc",
-	multiselect: true,
+	multiselect: false,
 	caption:"Resource allocation detail"
 }).navGrid('#pager_d',{add:false,edit:false,del:false});
-jQuery("#ms1").click( function() {
-	var s;
-	s = jQuery("#Task_d").jqGrid('getGridParam','selarrrow');
-	alert(s);
-});
-</script>
-	<script src="jqgrid/js/jquery.tableCheckbox.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		$('table').tableCheckbox({ /* options */});
-	</script>
 
-	<script type="text/javascript"
-		src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-		<script type="text/javascript" src="jqgrid/js/jquery-progresspiesvg-min.js"></script>
-	<script type="text/javascript">
-		$(function() {
-			$(".pp.dyncolor").progressPie({mode:$.fn.progressPie.Mode.COLOR, valueData:"val", size:50, strokeWidth: 0});
-		});
+
+
+
+jQuery("#Task").jqGrid({
+   	url:'servercall?type=tasklist&formate=JSON',
+	datatype: "json",
+   	colNames:['Task Id','Title','Status','Start Date','End Date','Actual End Date','Skills','Complexity Level', 'Description'],
+   	colModel:[
+   		{name:'id',index:'id', width
+		: 55,
+								align : "center"
+							}, {
+								name : 'title',
+								index : 'title',
+								width : 150
+							}, {
+								name : 'status',
+								index : 'status',
+								width : 80
+							}, {
+								name : 'sdate',
+								index : 'sdate',
+								width : 80,
+								align : "center"
+							}, {
+								name : 'edate',
+								index : 'edate',
+								width : 80,
+								align : "center"
+							}, {
+								name : 'aedate',
+								index : 'aedate',
+								width : 100,
+								align : "center"
+							}, {
+								name : 'skills',
+								index : 'skills',
+								width : 150
+							}, {
+								name : 'clevel',
+								index : 'clevel',
+								width : 120,
+								align : "center"
+							}, {
+								name : 'desc',
+								index : 'desc',
+								width : 200
+							} ],
+							rowNum : 10,
+							rowList : [ 10, 20, 30 ],
+							pager : '#pager',
+							sortname : 'id',
+							viewrecords : true,
+							sortorder : "desc",
+							multiselect : false,
+							caption : "Backlog",
+							editurl : "someurl.jsp",
+							height : 110,
+							onSelectRow : function(ids) {
+
+								jQuery("#Task_d").jqGrid('setCaption',
+										"Assignment Detail: " + ids).trigger(
+										'reloadGrid');
+								if (ids == null) {
+									ids = 0;
+									if (jQuery("#Task_d").jqGrid(
+											'getGridParam', 'records') > 0) {
+										jQuery("#Task_d")
+												.jqGrid(
+														'setGridParam',
+														{
+															url : "servercall?formate=JSON&type=taskresource&id="
+																	+ ids,
+															page : 1
+														});
+										jQuery("#Task_d").jqGrid('setCaption',
+												"Assignment Detail: " + ids)
+												.trigger('reloadGrid');
+									}
+								} else {
+
+									jQuery("#Task_d")
+											.jqGrid(
+													'setGridParam',
+													{
+														url : "servercall?formate=JSON&type=taskresource&id="
+																+ ids,
+														page : 1
+													});
+									jQuery("#Task_d").jqGrid('setCaption',
+											"Assignment Detail: " + ids)
+											.trigger('reloadGrid');
+								}
+							}
+						}).navGrid('#pager',{add:false,edit:false,del:false});
+
 	</script>
+	
 </body>
 </html>

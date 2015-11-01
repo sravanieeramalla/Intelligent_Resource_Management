@@ -13,6 +13,8 @@ public class Resource {
 	String edate=null;
 	int occupiedpercentage=0;
 	int availiblityStatus=0;
+	int assignedhour=0;
+	String aedate=null;
 	
 	//m2
 	public  List<Resource> getResourceByTaskId(int taskId){
@@ -21,9 +23,9 @@ public class Resource {
 		if(taskId!=0 ){		
 			rows=new ArrayList<Resource>();
 			
-		Resource r1= new Resource(10,"Deepak",4,"Open","12-10-2015","12-11-2015",30,60);
-		Resource r2= new Resource(11,"Sravani",5,"Open","02-10-2015","29-11-2015",50,50);
-		Resource r3= new Resource(12,"Madhuri",3,"Open","12-09-2015","12-12-2015",80,20);
+		Resource r1= new Resource(10,"Deepak",4,"Open","12-10-2015","12-11-2015",30,60,140,"12-11-2015");
+		Resource r2= new Resource(11,"Sravani",5,"Open","02-10-2015","29-11-2015",50,50,120,"12-11-2015");
+		Resource r3= new Resource(12,"Madhuri",3,"Open","12-09-2015","12-12-2015",80,20,100,"12-11-2015");
 		
 		rows.add(r1);
 		rows.add(r2);
@@ -40,9 +42,9 @@ public class Resource {
 		if(userId!=0 && taskSkill!=null &&  sdate!=null && edate!=null){		
 			rows=new ArrayList<Resource>();
 			
-		Resource r1= new Resource(10,"Deepak",4,"Open","12-10-2015","12-11-2015",30,60);
-		Resource r2= new Resource(11,"Sravani",5,"Open","02-10-2015","29-11-2015",50,50);
-		Resource r3= new Resource(12,"Madhuri",3,"Open","12-09-2015","12-12-2015",80,20);
+		Resource r1= new Resource(10,"Deepak",4,"Open","12-10-2015","12-11-2015",30,60,102,"15-11-2015");
+		Resource r2= new Resource(11,"Sravani",5,"Open","02-10-2015","29-11-2015",50,50,104,"19-11-2015");
+		Resource r3= new Resource(12,"Madhuri",3,"Open","12-09-2015","12-12-2015",80,20,103,"20-11-2015");
 		
 		rows.add(r1);
 		rows.add(r2);
@@ -53,6 +55,22 @@ public class Resource {
 
 	
 	public Resource() {
+	}
+
+	public Resource(int id, String name, int ratings, String status,
+			String sdate, String edate, int occupiedpercentage,
+			int availiblityStatus, int assignedhour, String aedate) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.ratings = ratings;
+		this.status = status;
+		this.sdate = sdate;
+		this.edate = edate;
+		this.occupiedpercentage = occupiedpercentage;
+		this.availiblityStatus = availiblityStatus;
+		this.assignedhour = assignedhour;
+		this.aedate = aedate;
 	}
 
 	public int getId() {
@@ -119,20 +137,23 @@ public class Resource {
 		this.availiblityStatus = availiblityStatus;
 	}
 
-	public Resource(int id, String name, int ratings, String status,
-			String sdate, String edate, int occupiedpercentage,
-			int availiblityStatus) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.ratings = ratings;
-		this.status = status;
-		this.sdate = sdate;
-		this.edate = edate;
-		this.occupiedpercentage = occupiedpercentage;
-		this.availiblityStatus = availiblityStatus;
+	public int getAssignedhour() {
+		return assignedhour;
 	}
 
+	public void setAssignedhour(int assignedhour) {
+		this.assignedhour = assignedhour;
+	}
+
+	public String getAedate() {
+		return aedate;
+	}
+
+	public void setAedate(String aedate) {
+		this.aedate = aedate;
+	}
+
+	
 
 	
 }

@@ -16,6 +16,7 @@ public class Task {
 	String desc=null;
 	
 	
+	
 	//m1
 	public List<Task> getTaskList(){
 		
@@ -50,8 +51,11 @@ public class Task {
 		this.skills = skills;
 		this.clevel = clevel;
 		this.desc = desc;
+		
 	}
 
+	
+	
 	public int getId() {
 		return id;
 	}
