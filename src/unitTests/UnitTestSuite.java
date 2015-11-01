@@ -8,8 +8,13 @@ public class UnitTestSuite {
 		rt.testGetResourceByTaskIdOfSizeThree();
 		rt.testGetResourceByTaskIdOfSizeTwo();
 		rt.testGetResourceByTaskIdZero();
+		rt.testgetResourceForTask();
+		rt.testgetResourceForTaskone();
 		
-
+		TaskTest tt=new TaskTest();
+		
+		tt.testgetTaskList();
+		
 	}
 
 }
