@@ -1,6 +1,6 @@
 language: java
 before install: cd java
-script: ant unitTests
+script: ant src/unitTests
 deploy:
    edge: true
    sudo: false
