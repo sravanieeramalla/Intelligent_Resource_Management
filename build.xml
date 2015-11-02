@@ -4,6 +4,7 @@
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. --><project basedir="." default="build" name="IntelTaskMgmt">
+     
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../eclipse/jee-mars/eclipse/"/>
     <property name="debuglevel" value="source,lines,vars"/>
@@ -29,6 +30,26 @@
         <pathelement location="WebContent/WEB-INF/lib/gson-2.3.1.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/mysql-connector.jar"/>
     </path>
+              	<target name="junit">
+
+              	    <junit printsummary="yes" haltonfailure="no">
+
+              		<!-- Project classpath, must include junit.jar -->
+              		<classpath refid="test.path" />
+              			
+              		<!-- test class -->
+              		<classpath location="${test.classes.dir}" />
+              			
+              		<test name="com.mkyong.test.TestMessage" 
+              			haltonfailure="no" todir="${report.dir}">
+              			<formatter type="plain" />
+              			<formatter type="xml" />
+              		</test>
+              			
+              	  </junit>
+              	</target>
+              	
+              	
     <target name="init">
         <mkdir dir="build/classes"/>
         <copy includeemptydirs="false" todir="build/classes">
