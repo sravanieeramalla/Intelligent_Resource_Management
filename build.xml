@@ -77,7 +77,7 @@
             <classpath refid="IntelTaskMgmt.classpath"/>
         </java>
     </target>
-    <target name="FirstTest">
+    <target name="unitTests.ResourceTest">
         <java classname="unitTests.ResourceTest" failonerror="true" fork="yes">
             <classpath refid="IntelTaskMgmt.classpath"/>
         </java>
