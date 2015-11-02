@@ -5,19 +5,32 @@
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. --><project basedir="." default="build" name="IntelTaskMgmt">
     <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../eclipse-jee-luna-R-win32-x86_64/eclipse/"/>
+    <property name="ECLIPSE_HOME" value="../../eclipse/jee-mars/eclipse/"/>
     <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="1.7"/>
-    <property name="source" value="1.7"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
     <path id="Web App Libraries.libraryclasspath">
         <pathelement location="WebContent/WEB-INF/lib/gson-2.3.1.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/ojdbc6.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/junit-4.10.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/servlet-api.jar"/>
     </path>
     <path id="EAR Libraries.libraryclasspath"/>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="../../.p2/pool/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+    </path>
+    <path id="Server Library [Apache Tomcat v8.0] (unbound).libraryclasspath"/>
     <path id="IntelTaskMgmt.classpath">
         <pathelement location="build/classes"/>
         <path refid="Web App Libraries.libraryclasspath"/>
         <path refid="EAR Libraries.libraryclasspath"/>
+        <pathelement location="../../Downloads/junit-4.10.jar"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+        <path refid="Server Library [Apache Tomcat v8.0] (unbound).libraryclasspath"/>
+        <pathelement location="WebContent/WEB-INF/lib/gson-2.3.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector.jar"/>
+        <pathelement location="../../Downloads/servlet-api.jar/servlet-api.jar"/>
     </path>
     <target name="init">
         <mkdir dir="build/classes"/>
@@ -31,7 +44,6 @@
         <delete dir="build/classes"/>
     </target>
     <target depends="clean" name="cleanall"/>
-    <target depends="build" name="test"/>
     <target depends="build-subprojects,build-project" name="build"/>
     <target name="build-subprojects"/>
     <target depends="init" name="build-project">
@@ -54,5 +66,25 @@
     <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
+    </target>
+    <target name="Conectionchecking">
+        <java classname="com.testview.Conectionchecking" failonerror="true" fork="yes">
+            <classpath refid="IntelTaskMgmt.classpath"/>
+        </java>
+    </target>
+    <target name="DBConnection">
+        <java classname="com.testview.DbConnection" failonerror="true" fork="yes">
+            <classpath refid="IntelTaskMgmt.classpath"/>
+        </java>
+    </target>
+    <target name="FirstTest">
+        <java classname="unitTests.FirstTest" failonerror="true" fork="yes">
+            <classpath refid="IntelTaskMgmt.classpath"/>
+        </java>
+    </target>
+    <target name="SecondTest">
+        <java classname="unitTests.SecondTest" failonerror="true" fork="yes">
+            <classpath refid="IntelTaskMgmt.classpath"/>
+        </java>
     </target>
 </project>
