@@ -1,7 +1,6 @@
 language: java
 before install: 
  - cd java
-script: ant unitTests.ResourceTest
 deploy:
    edge: true
    sudo: false
@@ -15,3 +14,4 @@ deploy:
    on:
    repo: sravanieeramalla/Intelligent_Resource_Management
    skip_cleanup: true
+script: ant unitTests.ResourceTest
