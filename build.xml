@@ -78,12 +78,12 @@
         </java>
     </target>
     <target name="unitTests.ResourceTest">
-        <java classname="unitTests.ResourceTest" failonerror="true" fork="yes">
+        <java classname="build/classes/unitTests.ResourceTest" failonerror="true" fork="yes">
             <classpath refid="IntelTaskMgmt.classpath"/>
         </java>
     </target>
     <target name="SecondTest">
-        <java classname="unitTests.TaskTest" failonerror="true" fork="yes">
+        <java classname="build/classes/unitTests.TaskTest" failonerror="true" fork="yes">
             <classpath refid="IntelTaskMgmt.classpath"/>
         </java>
     </target>
