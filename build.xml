@@ -29,26 +29,7 @@
         <path refid="Server Library [Apache Tomcat v8.0] (unbound).libraryclasspath"/>
         <pathelement location="WebContent/WEB-INF/lib/gson-2.3.1.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/mysql-connector.jar"/>
-    </path>
-              	<target name="junit">
-
-              	    <junit printsummary="yes" haltonfailure="no">
-
-              		<!-- Project classpath, must include junit.jar -->
-              		<classpath refid="test.path" />
-              			
-              		<!-- test class -->
-              		<classpath location="${test.classes.dir}" />
-              			
-              		<test name="com.mkyong.test.TestMessage" 
-              			haltonfailure="no" todir="${report.dir}">
-              			<formatter type="plain" />
-              			<formatter type="xml" />
-              		</test>
-              			
-              	  </junit>
-              	</target>
-              	
+    </path>       	
               	
     <target name="init">
         <mkdir dir="build/classes"/>
@@ -97,12 +78,12 @@
         </java>
     </target>
     <target name="FirstTest">
-        <java classname="unitTests.FirstTest" failonerror="true" fork="yes">
+        <java classname="unitTests.ResourceTest" failonerror="true" fork="yes">
             <classpath refid="IntelTaskMgmt.classpath"/>
         </java>
     </target>
     <target name="SecondTest">
-        <java classname="unitTests.SecondTest" failonerror="true" fork="yes">
+        <java classname="unitTests.TaskTest" failonerror="true" fork="yes">
             <classpath refid="IntelTaskMgmt.classpath"/>
         </java>
     </target>
