@@ -60,7 +60,7 @@ public class ResourceTest {
 		try{
 			Resource resourceObject = new Resource();
 			List<Resource> rows=new ArrayList<Resource>();
-			rows=resourceObject.getResourceForTask(0,null,null,"test");
+			rows=resourceObject.getResourceForTask(null,0,null,"test");
 	        assertEquals(null, rows);
 	        
 	        System.out.println("Test case testgetResourceForTask Passed");
@@ -73,13 +73,13 @@ public class ResourceTest {
 		
 		public void testgetResourceForTaskone(){
 			
-			//null,null,null,"test"
+			
 			try{
 				Resource resourceObject = new Resource();
 				List<Resource> rows=new ArrayList<Resource>();
-				List<TaskSkills> tasks=new ArrayList<TaskSkills>();
+				//List<TaskSkills> tasks=new ArrayList<TaskSkills>();
 				
-				rows=resourceObject.getResourceForTask(1,tasks,"01-11-2015","03-11-2015");
+				rows=resourceObject.getResourceForTask("tasks",1,"01-11-2015","03-11-2015");
 		        assertEquals(3, rows.size());
 		        
 		        System.out.println("Test case testgetResourceForTask Passed");
