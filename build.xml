@@ -4,6 +4,7 @@
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. --><project basedir="." default="build" name="IntelTaskMgmt">
+     
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../eclipse/jee-mars/eclipse/"/>
     <property name="debuglevel" value="source,lines,vars"/>
@@ -28,7 +29,8 @@
         <path refid="Server Library [Apache Tomcat v8.0] (unbound).libraryclasspath"/>
         <pathelement location="WebContent/WEB-INF/lib/gson-2.3.1.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/mysql-connector.jar"/>
-    </path>
+    </path>       	
+              	
     <target name="init">
         <mkdir dir="build/classes"/>
         <copy includeemptydirs="false" todir="build/classes">
@@ -75,13 +77,13 @@
             <classpath refid="IntelTaskMgmt.classpath"/>
         </java>
     </target>
-    <target name="FirstTest">
-        <java classname="unitTests.FirstTest" failonerror="true" fork="yes">
+    <target name="unitTests.ResourceTest">
+        <java classname="unitTests.ResourceTest" failonerror="true" fork="yes">
             <classpath refid="IntelTaskMgmt.classpath"/>
         </java>
     </target>
     <target name="SecondTest">
-        <java classname="unitTests.SecondTest" failonerror="true" fork="yes">
+        <java classname="unitTests.TaskTest" failonerror="true" fork="yes">
             <classpath refid="IntelTaskMgmt.classpath"/>
         </java>
     </target>
