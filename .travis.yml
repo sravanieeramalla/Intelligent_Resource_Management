@@ -12,5 +12,3 @@ deploy:
    on:
    repo: sravanieeramalla/Intelligent_Resource_Management
    skip_cleanup: true
-before install: cd java
-script: ant unitTests
