@@ -49,7 +49,6 @@ public class servercall extends HttpServlet {
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			
-			
 			if (type.equals("tasklist")) {
 				System.out.println("check 2");
 				responsedata= new Gson().toJson(task.getTaskList(),ArrayList.class);

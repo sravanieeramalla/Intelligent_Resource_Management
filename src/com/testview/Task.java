@@ -95,7 +95,8 @@ public static String getTaskStatus(int task_id){
 				task_status = rs.getString("TASK_STATUS");
 			}
 			
-			if(count!=1){
+			if(count==1){
+			}else{
 				task_status="In Progress";
 			}
 			
