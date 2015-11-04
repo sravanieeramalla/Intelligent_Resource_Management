@@ -4,10 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 public class Resource {
+	int objectCounter=0;
 	
 	int id=0;
 	String name=null;
@@ -23,9 +28,87 @@ public class Resource {
 	boolean flag=false;
 
 	public static void main(String[] args) {
+		ArrayList<Resource> rows=getResourceBySkill("JAVA");
+		for (Resource resource : rows) {
+			System.out.println(resource);
+		}
+		
 		
 	}
 
+	
+	public static HashMap<String,String> getResourceAvailiblity(int r_id){
+		
+		String response=null;
+		Connection dbConnection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet rs = null;
+		
+		String start_date=null;
+		String aend_date=null;
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal_today = Calendar.getInstance();
+		Calendar cal1 = Calendar.getInstance();
+		Calendar cal2 = null;
+		
+		int totalrecordcounter=0;
+		
+		HashMap<String,String> r_matrix = new HashMap<String, String>();	
+		int number_of_opentask=0; //Need to calculate
+		
+		try {
+			dbConnection = CloudDB.GetCONNECTION();
+			preparedStatement = dbConnection.prepareStatement(CNTPOOL.RESOURCE_AVAILIBLITY_OCCUPIED);
+			preparedStatement.setInt(1, r_id);
+			rs = preparedStatement.executeQuery();
+			while (rs.next()) {
+				
+				start_date = rs.getString("startdate");
+				if(rs.getString("actualenddate") == null ){
+					number_of_opentask++;
+					cal2=null;
+				}else{
+				++totalrecordcounter;//
+				System.out.println("-->"+rs.getString("actualenddate"));
+				cal1.setTime(sdf.parse(rs.getString("actualenddate")));
+				System.out.println("-cal1->"+cal1.getTime());
+				if(totalrecordcounter==1){
+					cal2=cal1;
+				}else{
+					if(cal1.equals(cal2) || cal1.after(cal2)){
+						cal2=cal1;
+						System.out.println("Date1 is after Date2");
+					}
+				}
+				}
+			}	
+			System.out.println("number_of_opentask : "+number_of_opentask);
+			response=sdf.format(cal2.getTime());
+		}catch(NullPointerException npe){
+			response=null;
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} catch (ParseException e) {
+		e.printStackTrace();
+		}	
+		finally {
+			try {
+				rs.close();
+				preparedStatement.close();
+				dbConnection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		r_matrix.put("actualenddate", response);
+		r_matrix.put("number_of_opentask", number_of_opentask+"");
+		
+		return r_matrix;
+
+	}
+
+	
 	public static ArrayList<Resource> getResourceBySkill(String skill){
 		
 		Connection dbConnection = null;
@@ -41,13 +124,13 @@ public class Resource {
 			rs = preparedStatement.executeQuery();
 			
 			//select a.r_id,a.r_skill,r.r_name,r.r_rating
-					
 			while (rs.next()) {
 				Resource r = new Resource();
 				r.setId(rs.getInt(1));
 				r.setName(rs.getString(3));
 				r.setSkills(rs.getString(2));
 				r.setRatings(rs.getInt(4));
+				//r.setEdate(rs.getString(5));
 				rows.add(r);
 			}
 			 
@@ -62,9 +145,7 @@ public class Resource {
 				e.printStackTrace();
 			}
 		}
-		
 		return rows;
-
 	}	
 
 	public static ArrayList<Resource> getResourceByTaskId(int taskId){
@@ -168,7 +249,12 @@ public class Resource {
 						if (resource.getRatings() == complexcity){
 							resource.setFlag(true);}
 							resource.setAssignedhour(temp);
-						
+							HashMap<String,String> amatrix= getResourceAvailiblity(resource.getId());
+							
+							
+							
+							
+							
 						rows.add(resource);
 					}
 			}
@@ -177,6 +263,7 @@ public class Resource {
 	}
 
 	public Resource() {
+		objectCounter++;
 	}
 
 	public Resource(int id, String name, int ratings, String status,
@@ -197,11 +284,23 @@ public class Resource {
 
 	@Override
 	public String toString() {
-		String str=id+"\t"+
+		String str="";
+		if(!(objectCounter>1)){
+		str="id\t"+
+				"name\t"+
+				"ratings\t"+
+				"assignedhour\t"+
+				"occupiedpercentage\t"+
+				"skills\t"+
+				"edate\t"+
+				"flag\n";}
+		str+=id+"\t"+
 				name+"\t"+
 				ratings+"\t"+
 				assignedhour+"\t"+
+				occupiedpercentage+"\t"+
 				skills+"\t"+
+				edate+"\t"+
 				flag+"\n";
 		return str;
 	}

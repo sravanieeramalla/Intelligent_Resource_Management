@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class showtables {
 	public static void main(String args[]) throws ClassNotFoundException {
+		
 		Class.forName("com.mysql.jdbc.Driver");
 		String dbURL = "jdbc:mysql://us-cdbr-iron-east-03.cleardb.net:3306/ad_eba640075b9d58e";
 		String username = "b5f00f11933f4b";
@@ -18,10 +19,12 @@ public class showtables {
 		Connection dbCon = null;
 		Statement stmt = null;
 		ResultSet rs = null;
+		
 		String tq = "select * from Task_details";
 		String rq = "select * from resource_table";
 		String taq = "select * from task_assignment ";
 		String dq ="SELECT DISTINCT TASK_STATUS FROM task_assignment WHERE TASK_ID=2";
+		
 		try {
 			dbCon = DriverManager.getConnection(dbURL, username, password);
 			

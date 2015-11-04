@@ -5,8 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 public class Task {
 	
 	int id=0;
@@ -16,12 +20,10 @@ public class Task {
 	String edate=null;
 	String aedate=null;
 	String skills=null;
-	int clevel=0;
+	int clevel=0;	
 	String desc=null;
 	
 	public static void main(String[] args) {
-		
-		System.out.println(getTaskActualEndDate(2));
 	}
 	
 	public List<Task> getTaskList(){
@@ -32,7 +34,6 @@ public class Task {
 		String selectSQL ="SELECT * FROM Task_details";
 		ArrayList<Task> rows=new ArrayList<Task>();
 		String task_status=null;
-		String actual_endate=null;
 		try {
 			dbConnection = CloudDB.GetCONNECTION();
 			preparedStatement = dbConnection.prepareStatement(selectSQL);
@@ -114,6 +115,9 @@ public static String getTaskStatus(int task_id){
 		return task_status;
 
 	}
+
+
+
 	
 public static String getTaskActualEndDate(int task_id){
 	
