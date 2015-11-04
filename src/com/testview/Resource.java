@@ -6,10 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Resource {
 	int objectCounter=0;
@@ -214,7 +211,11 @@ public class Resource {
 
 	
 	//m3
-	public  List<Resource> getResourceForTask(String skillset,int userId,String sdate,String edate){
+	public  List<Resource> getResourceForTask(String skillset,int userId,String sdate,String edate) {
+			
+		String actualenddate=null;
+		int number_of_opentask=0;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
 		String skill = null;
 		int hours = 0;
@@ -249,11 +250,31 @@ public class Resource {
 						if (resource.getRatings() == complexcity){
 							resource.setFlag(true);}
 							resource.setAssignedhour(temp);
+							
 							HashMap<String,String> amatrix= getResourceAvailiblity(resource.getId());
+							number_of_opentask=Integer.parseInt(amatrix.get("number_of_opentask"));
+							actualenddate=amatrix.get("actualenddate");
 							
+							int resourc_days=0;
+							try {
+								resourc_days = 100*(Resource.daysBetween(sdf.parse(actualenddate),sdf.parse(edate))/Resource.daysBetween(sdf.parse(sdate),sdf.parse(edate)));
+							} catch (ParseException e) {
+								e.printStackTrace();
+							}
+							resource.setAvailiblityStatus(resourc_days);
 							
-							
-							
+							if(number_of_opentask==0){
+								resource.setOccupiedpercentage(0);
+								resource.setFlag(true);
+							}else if(number_of_opentask==1){
+								resource.setOccupiedpercentage(25);
+							}else if(number_of_opentask==2){
+								resource.setOccupiedpercentage(50);
+							}else if(number_of_opentask==3){
+								resource.setOccupiedpercentage(75);
+							}else{
+								resource.setOccupiedpercentage(100);
+							}
 							
 						rows.add(resource);
 					}
@@ -261,6 +282,11 @@ public class Resource {
 		}
 		return rows;
 	}
+
+	  public static int daysBetween(Date d1, Date d2){
+          return (int)( (d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+	  }
+
 
 	public Resource() {
 		objectCounter++;

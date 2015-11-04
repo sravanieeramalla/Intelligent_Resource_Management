@@ -327,10 +327,14 @@ $(document).ready(function(){
                         			tableRow+="<td><input type=\"checkbox\" name=\"resId_\""+i+" ></td>";
                         		}
                         	}else if(j==1){//input textfield
-                          		tableRow+="<td><input type=\"text\" class=\"form-control\" id=\"title\" placeholder=\"Enter title\" value=\""+response.tableData.rows[i][j]+"\"></td>";
-                        	}else if(j==3){//Status	
+                          		tableRow+="<td><input type=\"text\" class=\"form-control\" id=\"title"+i+"\" placeholder=\"Enter title\" value=\""+response.tableData.rows[i][j]+"\"></td>";
+                        	}else if(j==2){//input textfield
+                          		tableRow+="<td><input type=\"text\" class=\"form-control\" id=\"sdate"+i+"\" placeholder=\"Enter start date\" value=\""+response.tableData.rows[i][j]+"\"></td>";
+                        	}else if(j==3){//input textfield
+                          		tableRow+="<td><input type=\"text\" class=\"form-control\" id=\"edate"+i+"\" placeholder=\"Enter end date\" value=\""+response.tableData.rows[i][j]+"\"></td>";
+                        	}else if(j==5){//Status	
                         		tableRow+="<td><div class=\"progress\"><div class=\"progress-bar progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: "+response.tableData.rows[i][j]+"%\">"+response.tableData.rows[i][j]+"%</div><div class=\"progress-bar progress-bar-success progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: "+(100-response.tableData.rows[i][j])+"%\">"+(100-response.tableData.rows[i][j])+"%</div></div></td>";
-                        	}else if(j==4){//Occupied
+                        	}else if(j==6){//Occupied
                         		tableRow+="<td align=\"center\"><p><span class=\"pp dyncolor\">"+response.tableData.rows[i][j]+"</span> %</p></td>";
                         	}else {
                         		 tableRow+="<td align=\"center\">"+response.tableData.rows[i][j]+"</td>";

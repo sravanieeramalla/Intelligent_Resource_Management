@@ -2,6 +2,7 @@ package com.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -66,6 +67,13 @@ public class servercall extends HttpServlet {
 				String edate= request.getParameter("edate");
 				String skill= request.getParameter("skill");
 				if(title!=null && sdate!=null && edate!=null && skill!=null){
+					
+					List<Resource> srlist=resource.getResourceForTask(skill,0,sdate,edate);
+					String temp1= new Gson().toJson(srlist,ArrayList.class);
+					
+					System.out.println("+++++++++++++++++++++++++++++++++++++++");
+							System.out.println(temp1);
+					System.out.println("+++++++++++++++++++++++++++++++++++++++");
 					System.out.println("check 4 - "+sdate+"\t"+edate+"\t"+skill+"\t"+title);
 					responsedata="{\"dh\":\"Ashish\",\"spm\":\"Bhupesh\",\"manager\":\"Sundeep\",\"tableData\":{\"header\":[\" Select \",\"Assigned Hour(s)\",\"Name\",\"Status\",\"Occupied\",\"Ratings\"],\"rows\":[[false,20,\"Madhuri\",20,40,5],[true,20,\"Deepak\",60,80,5],[true,20,\"Sravani\",10,80,5]]}}";
 				}
