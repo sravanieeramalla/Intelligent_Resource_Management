@@ -99,10 +99,20 @@
 															<div class="col-md-1 col-sm-1 col-xs-1"></div>
 														</div>
 														<div class="row">
-															<div class="form-group col-md-11 col-sm-11 col-xs-11">
+															<div class="form-group col-md-8 col-sm-8 col-xs-8">
 																<label class="control-label" for="description">Description:</label>
 																<input type="text" class="form-control" id="description"
 																	placeholder="Enter description">
+															</div>
+															<div class="form-group col-md-3 col-sm-3 col-xs-3">
+																<label class="control-label" for="description">Complexity Level:</label>
+																	<select name="clevel" id="clevel" class="form-control">
+																	  <option value="1"> Level 1</option>
+																	  <option value="2"> Level 2</option>
+																	  <option value="3"> Level 3</option>
+																	  <option value="4"> Level 4</option>
+																	  <option value="5"> Level 5</option>
+																	</select>
 															</div>
 															<div class="col-md-1 col-sm-1 col-xs-1"></div>
 														</div>
@@ -190,7 +200,10 @@
 														<div class="row">
 															<div class="form-group col-md-10 col-sm-10  col-xs-10"></div>
 															<div class="form-group col-md-2 col-sm-2  col-xs-2">
-																<button type="submit" class="btn btn-primary">Submit</button>
+																
+																 <input type='button'
+																	class="btn btn-primary btn-sm" value='Create Task'
+																	id='submitButton'>
 															</div>
 														</div>
 													</form>
@@ -244,6 +257,7 @@ $(document).ready(function(){
 	$('table').tableCheckbox({ /* options */});
 	
     var counter = 1;
+    var ctr=1;
 	
     $("#addButton").click(function () {
 			
@@ -273,7 +287,7 @@ $(document).ready(function(){
         $("#TextBoxDiv" + counter).remove();
 	});
 	
-    $("#resoucecontainer").hide();
+  // $("#resoucecontainer").hide();
 /* 	$("#getButtonValue").click(function () {
 	
 		var msg = '';
@@ -283,16 +297,58 @@ $(document).ready(function(){
 	   	alert(msg);
 	}); */
 	
+	submitButton
 	
+	/* Start submitButton */
+
+	$("#submitButton").click(function() { 
+
+		var title = $("#title").val();
+		var sdate = $("#sdate").val();
+		var edate = $("#edate").val();
+		var description = $("#description").val();
+		var clevel = $("#clevel").val();
+		
+		var rrecord = '';
+		
+		for(i=0; i<ctr; i++){
+			rrecord +=  $('#rtitle' + i).val()+ ":" + $('#redId' + i).prop('checked')+ ":" + $('#assignedhour' + i).val()
+			+":" + $('#rsdate' + i).val()+":" + $('#redate' + i).val()+",";
+		}
+		
+		var dataString = 'title='+ title + '&sdate=' + sdate + '&edate=' + edate 
+		+ '&description=' + description+ '&clevel=' + clevel+ '&rrecord=' + rrecord;
+		
+		$.ajax({ 
+	            type: "POST", 
+	            url: "servercall?formate=JSON&type=tasksubmit", 
+	            data: dataString,
+				dataType: "json",			
+	            success: function(response) { 
+	            	alert("Task successfully created!")
+	            } 
+	        }); 
+       
+		 $('#myModal').modal('toggle');
+        return false;    
+     }); 
+
+	
+	/* End submitButton */
+	
+	
+	/* Start GetRButton */
     $("#getRButton").click(function() { 
-    	$("#resoucecontainer").show();
+    	//$("#resoucecontainer").show();
 
 		var title = $("#title").val();
 		var sdate = $("#sdate").val();
 		var edate = $("#edate").val();
 		
 		var skill = '';
+		
 		for(i=1; i<counter; i++){
+			
 			skill += $('#textbox' + i).val()+ ":" + $('#textboxhour' + i).val()+":" + $('#textboxcmpx' + i).val()+",";
 		}
 		
@@ -311,41 +367,51 @@ $(document).ready(function(){
             	
             	var tableStr="<table>";
                 var tableHeader="";
-                for(i=0;i<response.tableData.header.length;i++){
-                 tableHeader+=("<th align=\"center\">"+response.tableData.header[i]+"</th>");
-                }
-                tableHeader="<thead><tr>"+tableHeader+"</tr></thead>";
+               
+                 tableHeader+=("<th align=\"center\">Selected</th>");
+                 tableHeader+=("<th align=\"center\">Name</th>");
+                 tableHeader+=("<th align=\"center\">Assignment Hour(s)</th>");
+                 tableHeader+=("<th align=\"center\">Skill</th>");
+                 tableHeader+=("<th align=\"center\">Start  Date</th>");
+                 tableHeader+=("<th align=\"center\">End Date</th>");
+                 tableHeader+=("<th align=\"center\">Availability</th>");
+                 tableHeader+=("<th align=\"center\">Occupied</th>");
+                 tableHeader+=("<th align=\"center\">Ratings</th>");
+                
+                tableHeader="<thead><tr>"+tableHeader+"</tr></thead>"; 
+                
                 var tableBody="";
-                for(i=0;i<response.tableData.rows.length;i++){
-                    var tableRow="";
-                        for(j=0;j<response.tableData.rows[i].length;j++){
+                var tableRow="";
+               	ctr=response.rows.length;
+                for(i=0;i<response.rows.length;i++){
+                	
+                    		if(response.rows[i].flag){
+                          		tableRow+="<tr><td><input type=\"checkbox\" id=\"redId"+i+"\" checked></td>";
+                			}else{
+                				tableRow+="<td><input type=\"checkbox\" id=\"resId\""+i+" ></td>";
+                			}
+                
+                			tableRow+="<td><input type=\"text\" class=\"form-control\" id=\"rtitle"+i+"\" placeholder=\"Enter title\" value=\""+response.rows[i].name+"\"></td>";
                         	
-                        	if(j==0){//input textfield
-                        		if(response.tableData.rows[i][j]==true){
-                          		tableRow+="<td><input type=\"checkbox\" name=\"resId_\""+i+" checked></td>";
-                        		}else{ 
-                        			tableRow+="<td><input type=\"checkbox\" name=\"resId_\""+i+" ></td>";
-                        		}
-                        	}else if(j==1){//input textfield
-                          		tableRow+="<td><input type=\"text\" class=\"form-control\" id=\"title"+i+"\" placeholder=\"Enter title\" value=\""+response.tableData.rows[i][j]+"\"></td>";
-                        	}else if(j==2){//input textfield
-                          		tableRow+="<td><input type=\"text\" class=\"form-control\" id=\"sdate"+i+"\" placeholder=\"Enter start date\" value=\""+response.tableData.rows[i][j]+"\"></td>";
-                        	}else if(j==3){//input textfield
-                          		tableRow+="<td><input type=\"text\" class=\"form-control\" id=\"edate"+i+"\" placeholder=\"Enter end date\" value=\""+response.tableData.rows[i][j]+"\"></td>";
-                        	}else if(j==5){//Status	
-                        		tableRow+="<td><div class=\"progress\"><div class=\"progress-bar progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: "+response.tableData.rows[i][j]+"%\">"+response.tableData.rows[i][j]+"%</div><div class=\"progress-bar progress-bar-success progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: "+(100-response.tableData.rows[i][j])+"%\">"+(100-response.tableData.rows[i][j])+"%</div></div></td>";
-                        	}else if(j==6){//Occupied
-                        		tableRow+="<td align=\"center\"><p><span class=\"pp dyncolor\">"+response.tableData.rows[i][j]+"</span> %</p></td>";
-                        	}else {
-                        		 tableRow+="<td align=\"center\">"+response.tableData.rows[i][j]+"</td>";
-                        	}
-                        
-                        }
-                        tableBody=tableBody+"<tr>"+tableRow+"</tr>";
+                			tableRow+="<td><input type=\"text\" class=\"form-control\" id=\"assignedhour"+i+"\" placeholder=\"Hour\" value=\""+response.rows[i].assignedhour+"\"></td>";
+                			
+                			tableRow+="<td><input type=\"text\" class=\"form-control\" id=\"skill"+i+"\" placeholder=\"Hour\" value=\""+response.rows[i].skills+"\"></td>";
+                	         
+                			tableRow+="<td><input type=\"text\" class=\"form-control\" id=\"rsdate"+i+"\" placeholder=\"Enter start date\" value=\"\"></td>";
+
+                          	tableRow+="<td><input type=\"text\" class=\"form-control\" id=\"redate"+i+"\" placeholder=\"Enter end date\" value=\"\"></td>";
+                          	
+                        	tableRow+="<td><div class=\"progress\"><div class=\"progress-bar progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: "+response.rows[i].availiblityStatus+"%\">"+response.rows[i].availiblityStatus+"%</div><div class=\"progress-bar progress-bar-warning progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: "+(100-response.rows[i].availiblityStatus)+"%\">"+(100-response.rows[i].availiblityStatus)+"%</div></div></td>";
+                        	
+                			tableRow+="<td align=\"center\"><p><span class=\"pp dyncolor\">"+response.rows[i].occupiedpercentage+"</span> %</p></td>";
+                        	
+                        	tableRow+="<td align=\"center\">"+response.rows[i].ratings+"</td></tr>";
+                   			
                 }       
-                tableBody="<tbody>"+tableBody+"</tbody>";
+                tableBody=tableHeader+"<tbody>"+tableRow+"</tbody>";
                 $('#resourcetable').empty();
-                $('#resourcetable').append("<div class=\"col-md-12 col-sm-12  col-xs-12\" id=\"resourcetable\"><table class=\"table table-bordered table-striped\">"+tableHeader+tableBody+"</table></div>");
+                //alert("->"+tableBody)
+                $('#resourcetable').append("<div class=\"col-md-12 col-sm-12  col-xs-12\" id=\"resourcetable\"><table class=\"table table-bordered table-striped\">"+tableBody+"</table></div>");
                 
 				
 				
@@ -356,7 +422,7 @@ $(document).ready(function(){
         }); 
         return false;     
      }); 
-	
+	/* End GetRButton */
 	
 	
 });

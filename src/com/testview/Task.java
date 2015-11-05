@@ -23,8 +23,7 @@ public class Task {
 	int clevel=0;	
 	String desc=null;
 	
-	public static void main(String[] args) {
-	}
+	
 	
 	public List<Task> getTaskList(){
 		
@@ -272,8 +271,72 @@ public static String getTaskActualEndDate(int task_id){
 	public String getDesc() {
 		return desc;
 	}
-	
-	
+
+	public static void main(String[] args) {
+		System.out.println("New id :"+getNewTaskId());
+	}
+
+	public static int getNewTaskId() {
+		Connection dbConnection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet rs = null;
+		int  new_id=0;
+		String selectSQL ="SELECT max(task_id) FROM Task_details";
+		try {
+			dbConnection = CloudDB.GetCONNECTION();
+			preparedStatement = dbConnection.prepareStatement(selectSQL);
+			rs = preparedStatement.executeQuery();
+			while (rs.next()) {
+				new_id = rs.getInt(1);
+			}
+			new_id++;
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				preparedStatement.close();
+				dbConnection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return new_id;
+	}
+
+	public static int save(String title2, String sdate2, String edate2,
+			String description, String clevel2) {
+		
+		Connection dbConnection = null;
+		PreparedStatement preparedStatement = null;
+		int  new_id=getNewTaskId();
+		String selectSQL ="insert into Task_details values(?,?,?,?,?,?,?)";
+		try {
+			dbConnection = CloudDB.GetCONNECTION();
+			preparedStatement = dbConnection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, new_id);
+			preparedStatement.setString(2, title2);
+			preparedStatement.setString(3, description);
+			preparedStatement.setString(4, sdate2);
+			preparedStatement.setString(5, edate2);
+			preparedStatement.setString(6, null);
+			preparedStatement.setInt(7, Integer.parseInt(clevel2));
+			preparedStatement.executeUpdate();
+			
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+				preparedStatement.close();
+				dbConnection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return new_id;
+
+	}
+
 	
 }
 

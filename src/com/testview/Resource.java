@@ -24,14 +24,16 @@ public class Resource {
 	String skills=null;
 	boolean flag=false;
 
-	public static void main(String[] args) {
-		ArrayList<Resource> rows=getResourceBySkill("JAVA");
+	/*public static void main(String[] args) {
+		//2015-01-01	2015-12-31	java:100:5,net:200:4,	deepak
+		
+		ArrayList<Resource> rows=getResourceForTask("java:100:5,tablu:200:4,", 0, "2015-01-01", "2015-12-31");
 		for (Resource resource : rows) {
 			System.out.println(resource);
 		}
 		
 		
-	}
+	}*/
 
 	
 	public static HashMap<String,String> getResourceAvailiblity(int r_id){
@@ -43,6 +45,7 @@ public class Resource {
 		
 		String start_date=null;
 		String aend_date=null;
+		String end_date=null;
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal_today = Calendar.getInstance();
@@ -62,6 +65,7 @@ public class Resource {
 			while (rs.next()) {
 				
 				start_date = rs.getString("startdate");
+				end_date=rs.getString("enddate");
 				if(rs.getString("actualenddate") == null ){
 					number_of_opentask++;
 					cal2=null;
@@ -99,6 +103,7 @@ public class Resource {
 			}
 		}
 		r_matrix.put("actualenddate", response);
+		r_matrix.put("enddate", end_date);
 		r_matrix.put("number_of_opentask", number_of_opentask+"");
 		
 		return r_matrix;
@@ -211,7 +216,7 @@ public class Resource {
 
 	
 	//m3
-	public  List<Resource> getResourceForTask(String skillset,int userId,String sdate,String edate) {
+	public static SuggestedResourceList getResourceForTask(String skillset,int userId,String sdate,String edate) {
 			
 		String actualenddate=null;
 		int number_of_opentask=0;
@@ -250,37 +255,58 @@ public class Resource {
 						if (resource.getRatings() == complexcity){
 							resource.setFlag(true);}
 							resource.setAssignedhour(temp);
+							System.out.println(resource.getId());
+							System.out.println(resource.getName());
+							System.out.println(resource.getSkills());
 							
 							HashMap<String,String> amatrix= getResourceAvailiblity(resource.getId());
 							number_of_opentask=Integer.parseInt(amatrix.get("number_of_opentask"));
-							actualenddate=amatrix.get("actualenddate");
+							actualenddate=amatrix.get("enddate");
 							
-							int resourc_days=0;
+							
+							System.out.println("End date :"+actualenddate);
+							System.out.println("edate date :"+edate);
+							System.out.println("sdate date :"+sdate);
+							
 							try {
-								resourc_days = 100*(Resource.daysBetween(sdf.parse(actualenddate),sdf.parse(edate))/Resource.daysBetween(sdf.parse(sdate),sdf.parse(edate)));
+								if(actualenddate!=null && sdf.parse(actualenddate).before(new Date())){
+									int resourc_days=0;
+									try {
+										resourc_days = 100*(Resource.daysBetween(sdf.parse(actualenddate),sdf.parse(edate))/Resource.daysBetween(sdf.parse(sdate),sdf.parse(edate)));
+									} catch (ParseException e) {
+										e.printStackTrace();
+									}
+									System.out.println("AVL status"+resourc_days);
+									resource.setAvailiblityStatus(resourc_days);
+									
+									if(number_of_opentask==0){
+										resource.setOccupiedpercentage(0);
+										resource.setFlag(true);
+									}else if(number_of_opentask==1){
+										resource.setOccupiedpercentage(25);
+									}else if(number_of_opentask==2){
+										resource.setOccupiedpercentage(50);
+									}else if(number_of_opentask==3){
+										resource.setOccupiedpercentage(75);
+									}else{
+										resource.setOccupiedpercentage(100);
+									}
+								}else{
+									resource.setOccupiedpercentage(0);
+									resource.setFlag(true);
+									resource.setAvailiblityStatus(100);
+								}
+								
 							} catch (ParseException e) {
+								// TODO Auto-generated catch block
 								e.printStackTrace();
-							}
-							resource.setAvailiblityStatus(resourc_days);
-							
-							if(number_of_opentask==0){
-								resource.setOccupiedpercentage(0);
-								resource.setFlag(true);
-							}else if(number_of_opentask==1){
-								resource.setOccupiedpercentage(25);
-							}else if(number_of_opentask==2){
-								resource.setOccupiedpercentage(50);
-							}else if(number_of_opentask==3){
-								resource.setOccupiedpercentage(75);
-							}else{
-								resource.setOccupiedpercentage(100);
 							}
 							
 						rows.add(resource);
 					}
 			}
 		}
-		return rows;
+		return new SuggestedResourceList(rows);
 	}
 
 	  public static int daysBetween(Date d1, Date d2){
@@ -317,6 +343,7 @@ public class Resource {
 				"ratings\t"+
 				"assignedhour\t"+
 				"occupiedpercentage\t"+
+				"availiblityStatus\t"+
 				"skills\t"+
 				"edate\t"+
 				"flag\n";}
@@ -325,6 +352,7 @@ public class Resource {
 				ratings+"\t"+
 				assignedhour+"\t"+
 				occupiedpercentage+"\t"+
+				availiblityStatus+"\t"+
 				skills+"\t"+
 				edate+"\t"+
 				flag+"\n";
@@ -426,7 +454,107 @@ public class Resource {
 		this.aedate = aedate;
 	}
 
-	
 
+	public void assignTask(int t_id,String rrecord) {
+
+		String rtitle=null;
+		String redId=null;
+		int assignedhour=0;
+		String rsdate=null;
+		String redate=null;
+		
+		int i=0;
+		
+		for (String retval : rrecord.split(",")) {
+			
+			rtitle=null;
+			redId=null;
+			assignedhour=0;
+			rsdate=null;
+			redate=null;
+			
+			i = 0;
+			
+			for (String rtl : retval.split(":")) {
+				i++;
+				if (i == 1)
+					rtitle = rtl;
+				if (i == 2)
+					redId = rtl;
+				if (i == 3)
+					assignedhour = Integer.parseInt(rtl);
+				if (i == 4)
+					rsdate = rtl;
+				if (i == 5)
+					rsdate = rtl;
+				
+			}
+			
+			if (redId.equals("true")) {
+				saveTaskAssignment(t_id, getResourceId(rtitle), rsdate, rsdate,assignedhour);
+			}
+		}
+		
+	}
+
+		
+		public static int getResourceId(String name) {
+			Connection dbConnection = null;
+			PreparedStatement preparedStatement = null;
+			ResultSet rs = null;
+			int  new_id=0;
+			String selectSQL ="SELECT R_ID FROM resource_table where r_name=?";
+			try {
+				dbConnection = CloudDB.GetCONNECTION();
+				preparedStatement = dbConnection.prepareStatement(selectSQL);
+				preparedStatement.setString(1, name);
+				rs = preparedStatement.executeQuery();
+				while (rs.next()) {
+					new_id = rs.getInt("R_ID");
+				}
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			} finally {
+				try {
+					rs.close();
+					preparedStatement.close();
+					dbConnection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return new_id;
+		}
+		
+		public static int saveTaskAssignment(int t_id,int r_id, String sdate2, String edate2,int assignedHours) {
+			
+			Connection dbConnection = null;
+			PreparedStatement preparedStatement = null;
+			String selectSQL ="insert into task_assignment values(?,?,?,?,?,?,?)";
+			try {
+				dbConnection = CloudDB.GetCONNECTION();
+				preparedStatement = dbConnection.prepareStatement(selectSQL);
+				preparedStatement.setInt(1, t_id);
+				preparedStatement.setInt(2, r_id);
+				preparedStatement.setString(3, "open");
+				preparedStatement.setString(4, sdate2);
+				preparedStatement.setString(5, edate2);
+				preparedStatement.setString(6, null);
+				preparedStatement.setInt(7, assignedHours);
+				preparedStatement.executeUpdate();
+				
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			} finally {
+				try {
+					preparedStatement.close();
+					dbConnection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return 1;
+
+		}
 	
 }

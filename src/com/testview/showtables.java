@@ -23,7 +23,7 @@ public class showtables {
 		String tq = "select * from Task_details";
 		String rq = "select * from resource_table";
 		String taq = "select * from task_assignment ";
-		String dq ="SELECT DISTINCT TASK_STATUS FROM task_assignment WHERE TASK_ID=2";
+		//String dq ="SELECT DISTINCT TASK_STATUS FROM task_assignment WHERE TASK_ID=2";
 		
 		try {
 			dbCon = DriverManager.getConnection(dbURL, username, password);

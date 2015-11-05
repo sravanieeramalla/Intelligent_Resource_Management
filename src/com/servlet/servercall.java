@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.testview.Resource;
+import com.testview.SuggestedResourceList;
 import com.testview.Task;
 
 public class servercall extends HttpServlet {
@@ -66,21 +67,39 @@ public class servercall extends HttpServlet {
 				String sdate= request.getParameter("sdate");
 				String edate= request.getParameter("edate");
 				String skill= request.getParameter("skill");
+				System.out.println("check 4 - "+sdate+"\t"+edate+"\t"+skill+"\t"+title);
 				if(title!=null && sdate!=null && edate!=null && skill!=null){
 					
-					List<Resource> srlist=resource.getResourceForTask(skill,0,sdate,edate);
-					String temp1= new Gson().toJson(srlist,ArrayList.class);
+					System.out.println("check 5 - "+sdate+"\t"+edate+"\t"+skill+"\t"+title);
+					
+					SuggestedResourceList srlist=resource.getResourceForTask(skill,0,sdate,edate);
+					
+					responsedata= new Gson().toJson(srlist);
 					
 					System.out.println("+++++++++++++++++++++++++++++++++++++++");
-							System.out.println(temp1);
+							System.out.println(responsedata);
 					System.out.println("+++++++++++++++++++++++++++++++++++++++");
-					System.out.println("check 4 - "+sdate+"\t"+edate+"\t"+skill+"\t"+title);
-					responsedata="{\"dh\":\"Ashish\",\"spm\":\"Bhupesh\",\"manager\":\"Sundeep\",\"tableData\":{\"header\":[\" Select \",\"Assigned Hour(s)\",\"Name\",\"Status\",\"Occupied\",\"Ratings\"],\"rows\":[[false,20,\"Madhuri\",20,40,5],[true,20,\"Deepak\",60,80,5],[true,20,\"Sravani\",10,80,5]]}}";
+					
+				//	responsedata="{\"dh\":\"Ashish\",\"spm\":\"Bhupesh\",\"manager\":\"Sundeep\",\"tableData\":{\"header\":[\" Select \",\"Assigned Hour(s)\",\"Name\",\"Status\",\"Occupied\",\"Ratings\"],\"rows\":[[false,20,\"Madhuri\",20,40,5],[true,20,\"Deepak\",60,80,5],[true,20,\"Sravani\",10,80,5]]}}";
 				}
+			}else if (type.equals("tasksubmit")) {
+				
+				System.out.println("tasksubmit 1");
+				
+				String title= request.getParameter("title");
+				String sdate= request.getParameter("sdate");
+				String edate= request.getParameter("edate");
+				String description= request.getParameter("description");
+				String clevel= request.getParameter("clevel");
+				String rrecord= request.getParameter("rrecord");
+				
+				int tid=task.save(title,sdate,edate,description,clevel);
+				resource.assignTask(tid,rrecord);
+				System.out.println("check 4 - "+title+"\t"+sdate+"\t"+edate+"\t"+description+"\t"+clevel+"\t"+rrecord);
+				return;
+				
 			}
-			
 		}
-		
 				
 		response.getWriter().write(responsedata);
 				
